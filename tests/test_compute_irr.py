@@ -95,3 +95,18 @@ def test_excel_report_writes_expected_sheets(result, tmp_path):
                 "mean_pairwise_cohen", "krippendorff_alpha",
                 "ceiling_band", "underpowered"):
         assert col in header
+
+
+def test_markdown_report_includes_required_sections(result, tmp_path):
+    import report
+    out_path = tmp_path / "irr_test_report.md"
+    report.write_markdown(result, out_path)
+    text = out_path.read_text()
+    # Headline table + per-question section + caveats
+    assert "# Inter-Rater Reliability Report" in text
+    assert "## Per-question summary" in text
+    assert "## Methodology" in text
+    assert "## Caveats" in text
+    # Each question gets a row in the headline table
+    for q in ("Q1", "Q2", "Q3", "Q4", "Q5", "Q6"):
+        assert f"| {q} |" in text or f"|{q}|" in text or f"| **{q}** |" in text
