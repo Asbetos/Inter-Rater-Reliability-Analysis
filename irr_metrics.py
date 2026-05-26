@@ -9,6 +9,7 @@ from __future__ import annotations
 import math
 from collections import Counter
 from typing import Iterable, List, Optional, Sequence
+from normalize import jaccard  # imported here to keep metrics' deps explicit
 
 
 def _drop_missing_pairs(a, b):
@@ -141,3 +142,21 @@ def krippendorff_alpha_nominal(matrix: Sequence[Sequence[Optional[str]]]) -> flo
         # Perfect agreement -> alpha defined as 1
         return 1.0
     return 1.0 - D_o / D_e
+
+
+def mean_jaccard(a: Sequence, b: Sequence) -> float:
+    """Mean pairwise Jaccard similarity over parallel iterables of frozensets.
+
+    Pairs where both sets are empty (Jaccard is NaN) are excluded from
+    the mean. Returns NaN if all pairs are excluded.
+    """
+    if len(a) != len(b):
+        raise ValueError("mean_jaccard inputs must have equal length")
+    vals = []
+    for x, y in zip(a, b):
+        j = jaccard(x, y)
+        if not math.isnan(j):
+            vals.append(j)
+    if not vals:
+        return math.nan
+    return sum(vals) / len(vals)

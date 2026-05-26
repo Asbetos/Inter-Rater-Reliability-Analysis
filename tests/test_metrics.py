@@ -138,3 +138,25 @@ def test_krippendorff_alpha_nan_when_no_pairs():
         [None,  "no"],
     ]
     assert math.isnan(irr_metrics.krippendorff_alpha_nominal(matrix))
+
+
+# --- Mean Jaccard agreement ---
+
+def test_mean_jaccard_simple():
+    a = [frozenset({"x"}), frozenset({"x", "y"}), frozenset({"a"})]
+    b = [frozenset({"x"}), frozenset({"x"}), frozenset({"b"})]
+    # Jaccards: 1.0, 0.5, 0.0 -> mean = 0.5
+    assert irr_metrics.mean_jaccard(a, b) == pytest.approx(0.5, abs=1e-9)
+
+
+def test_mean_jaccard_excludes_both_empty_pairs():
+    a = [frozenset(), frozenset({"x"})]
+    b = [frozenset(), frozenset({"x"})]
+    # First pair is NaN (both empty) and excluded; second is 1.0 -> mean = 1.0
+    assert irr_metrics.mean_jaccard(a, b) == pytest.approx(1.0, abs=1e-9)
+
+
+def test_mean_jaccard_all_empty_returns_nan():
+    a = [frozenset(), frozenset()]
+    b = [frozenset(), frozenset()]
+    assert math.isnan(irr_metrics.mean_jaccard(a, b))
