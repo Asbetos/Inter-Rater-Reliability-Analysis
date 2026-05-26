@@ -47,3 +47,36 @@ def cohen_kappa(rater_a: Sequence, rater_b: Sequence) -> float:
     if pe == 1.0:
         return math.nan
     return (po - pe) / (1.0 - pe)
+
+
+def fleiss_kappa(counts: Sequence[Sequence[int]]) -> float:
+    """Fleiss' kappa over a fixed-N raters-by-categories count matrix.
+
+    `counts[i][j]` = number of raters assigning unit i to category j.
+    All rows must sum to the same total (raters per unit).
+
+    Returns NaN if Pe == 1 (only one category used) or N == 0.
+    """
+    if not counts:
+        return math.nan
+    N = len(counts)
+    k = len(counts[0])
+    n = sum(counts[0])
+    if n < 2:
+        raise ValueError("Fleiss kappa requires at least 2 raters per unit")
+    for row in counts:
+        if len(row) != k or sum(row) != n:
+            raise ValueError(
+                "Fleiss kappa requires all units have the same total rater count "
+                "and the same category dimension"
+            )
+    p_j = [sum(counts[i][j] for i in range(N)) / (N * n) for j in range(k)]
+    P_i = [
+        (sum(counts[i][j] ** 2 for j in range(k)) - n) / (n * (n - 1))
+        for i in range(N)
+    ]
+    P_bar = sum(P_i) / N
+    Pe = sum(p ** 2 for p in p_j)
+    if Pe == 1.0:
+        return math.nan
+    return (P_bar - Pe) / (1.0 - Pe)

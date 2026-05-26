@@ -37,3 +37,46 @@ def test_cohen_kappa_drops_pairs_with_None():
     b = ["yes", "no",  "yes", "no"]
     # Effective pairs are (yes,yes), (yes,no), (no,no) -> same as textbook -> 0.4
     assert irr_metrics.cohen_kappa(a, b) == pytest.approx(0.4, abs=1e-9)
+
+
+# --- Fleiss' kappa ---
+
+def test_fleiss_kappa_textbook_example():
+    # 3 raters, 4 units, 2 categories ('yes', 'no')
+    # N[i] = counts per category per unit
+    counts = [
+        [3, 0],
+        [2, 1],
+        [1, 2],
+        [0, 3],
+    ]
+    # Hand-computed: 1/3
+    assert irr_metrics.fleiss_kappa(counts) == pytest.approx(1/3, abs=1e-9)
+
+
+def test_fleiss_kappa_perfect_agreement():
+    counts = [
+        [3, 0],
+        [3, 0],
+        [0, 3],
+    ]
+    assert irr_metrics.fleiss_kappa(counts) == pytest.approx(1.0, abs=1e-9)
+
+
+def test_fleiss_kappa_raises_on_uneven_rater_count():
+    counts = [
+        [3, 0],
+        [2, 0],  # only 2 raters for unit 2
+    ]
+    with pytest.raises(ValueError):
+        irr_metrics.fleiss_kappa(counts)
+
+
+def test_fleiss_kappa_returns_nan_when_one_category():
+    counts = [
+        [3, 0],
+        [3, 0],
+        [3, 0],
+    ]
+    # All units in category 0 -> Pe == 1 -> undefined
+    assert math.isnan(irr_metrics.fleiss_kappa(counts))
