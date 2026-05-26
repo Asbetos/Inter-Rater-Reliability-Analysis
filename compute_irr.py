@@ -229,3 +229,27 @@ def run(path) -> Dict:
         units = _pivot_to_units_x_coders(df, q, coders_present)
         result["per_question"][q] = _compute_question_metrics(q, units, coders_present)
     return result
+
+
+def _cli():
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Compute per-question IRR metrics for a citizen_voice cross_q_check workbook."
+    )
+    parser.add_argument("--input", required=True, type=Path,
+                        help="Path to a cross_q_check*.xlsx file")
+    parser.add_argument("--output-xlsx", required=True, type=Path,
+                        help="Path to write the Excel report")
+    parser.add_argument("--output-md", required=True, type=Path,
+                        help="Path to write the Markdown summary")
+    args = parser.parse_args()
+    import report
+    result = run(args.input)
+    report.write_excel(result, args.output_xlsx)
+    report.write_markdown(result, args.output_md)
+    print(f"wrote {args.output_xlsx}")
+    print(f"wrote {args.output_md}")
+
+
+if __name__ == "__main__":
+    _cli()
