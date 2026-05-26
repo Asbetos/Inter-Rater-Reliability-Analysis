@@ -80,3 +80,64 @@ def fleiss_kappa(counts: Sequence[Sequence[int]]) -> float:
     if Pe == 1.0:
         return math.nan
     return (P_bar - Pe) / (1.0 - Pe)
+
+
+def krippendorff_alpha_nominal(matrix: Sequence[Sequence[Optional[str]]]) -> float:
+    """Krippendorff's alpha for nominal data with missing values.
+
+    `matrix[i]` is a list of values from each rater for unit i. Missing
+    values are None.
+
+    Implementation follows Krippendorff (2011) "Computing Krippendorff's
+    alpha-reliability". Builds the coincidence matrix and computes observed
+    vs expected disagreement.
+
+    Returns NaN if no unit has >= 2 non-missing values (no pairs to count).
+    """
+    # Collect categories from non-missing values.
+    categories = sorted({v for row in matrix for v in row if v is not None}, key=str)
+    if not categories:
+        return math.nan
+    idx = {c: i for i, c in enumerate(categories)}
+    k = len(categories)
+
+    O = [[0.0] * k for _ in range(k)]
+    for row in matrix:
+        present = [v for v in row if v is not None]
+        m = len(present)
+        if m < 2:
+            continue
+        # For each ordered pair (i, j) with i != j of the m values, add
+        # 1 / (m - 1) to O[present[i]][present[j]]. This is equivalent to:
+        # for each pair of distinct positions, contribute both (a,b) and
+        # (b,a). The sum yields the standard Krippendorff coincidence count.
+        counts_per_value = Counter(present)
+        for c1, n1 in counts_per_value.items():
+            for c2, n2 in counts_per_value.items():
+                if c1 == c2:
+                    # number of ordered same-value pairs = n1 * (n1 - 1)
+                    contribution = n1 * (n1 - 1) / (m - 1)
+                else:
+                    # number of ordered different-value pairs = n1 * n2
+                    contribution = n1 * n2 / (m - 1)
+                O[idx[c1]][idx[c2]] += contribution
+
+    n_c = [sum(O[i]) for i in range(k)]
+    n_total = sum(n_c)
+    if n_total == 0 or n_total == 1:
+        return math.nan
+
+    # Observed disagreement (nominal: 1 if c != c', else 0)
+    D_o_num = sum(O[i][j] for i in range(k) for j in range(k) if i != j)
+    D_o = D_o_num / n_total
+
+    # Expected disagreement
+    D_e_num = sum(
+        n_c[i] * n_c[j] for i in range(k) for j in range(k) if i != j
+    )
+    D_e = D_e_num / (n_total * (n_total - 1))
+
+    if D_e == 0:
+        # Perfect agreement -> alpha defined as 1
+        return 1.0
+    return 1.0 - D_o / D_e
