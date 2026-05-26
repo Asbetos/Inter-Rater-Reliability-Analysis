@@ -78,3 +78,20 @@ def test_q1_pairwise_cohen_includes_leah_rachel(result):
     # yes/yes: 1, yes/no: 1, no/no: 3 -> Po = 4/5 = 0.8, Pe = (2/5)(1/5) + (3/5)(4/5) = 2/25 + 12/25 = 14/25
     # kappa = (0.8 - 0.56)/(1 - 0.56) = 0.24/0.44 ≈ 0.5454
     assert pairs[("Leah", "Rachel")] == pytest.approx(0.5454, abs=1e-3)
+
+
+def test_excel_report_writes_expected_sheets(result, tmp_path):
+    import openpyxl
+    out_path = tmp_path / "irr_test_report.xlsx"
+    import report
+    report.write_excel(result, out_path)
+    wb = openpyxl.load_workbook(out_path, read_only=True)
+    assert set(wb.sheetnames) == {"summary", "pairwise_kappa", "disagreements", "metadata"}
+
+    summary = wb["summary"]
+    header = [c.value for c in next(summary.iter_rows(max_row=1))]
+    # Required summary columns
+    for col in ("question", "type", "n_units", "raw_pct_agreement",
+                "mean_pairwise_cohen", "krippendorff_alpha",
+                "ceiling_band", "underpowered"):
+        assert col in header
