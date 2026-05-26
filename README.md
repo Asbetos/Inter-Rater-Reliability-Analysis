@@ -58,12 +58,14 @@ The first pilot run on `cross_q_check_vol134p2_second_pass_20251005.xlsx` produc
 
 | Question | N (units) | Raw % agree | Krippendorff α | Reading |
 |---|---|---|---|---|
-| Q1 | 22 | 0.91 | ≈ 0 | Only 22 orders had ≥2 coders actually answering Q1 |
+| Q1 | 22 | 0.9091 | -0.0238 | Only 22 orders had ≥2 coders actually answering Q1; agreement is at chance |
 | Q2 | 0 | NaN | NaN | No order had ≥2 coders answer Q2 |
 | Q3 | 0 | NaN | NaN | Same |
-| Q4 | 18 | 0.00 | poor | All 18 cases are one-coder-answered, other-blank (no pairwise agreement possible) |
-| Q5 | 17 | 0.00 | poor | Same pattern as Q4 |
-| Q6 | 21 | 0.95 | 0.00 | Small overlap, all-no answers → Pe == 1 → α undefined → reported as 0 |
+| Q4 | 18 | 0.0000 | -0.3462 | 18 units had one coder give a non-empty label set and the other leave Q4 blank (treated as empty set); strict agreement is impossible by construction, Jaccard = 0 |
+| Q5 | 17 | 0.0000 | -0.4311 | Same pattern as Q4 — non-empty vs blank pairs |
+| Q6 | 21 | 0.9524 | 0.0000 | Small overlap, all-no answers in the overlapping rows → Pe == 1 → α undefined → reported as 0 |
+
+(α values are negative for Q1/Q4/Q5: coders disagree *more* than chance would predict. This is consistent with the data sparsity story below — the few rows with two non-blank answers happen to be the contested ones.)
 
 **Why so sparse?** The Oct 5 file lists four coders (Leah, Bridget, Rachel, Alia) with participation indicators, but:
 
