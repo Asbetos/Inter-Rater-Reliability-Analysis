@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+outputs/*.xlsx
+outputs/*.md
+!outputs/.gitkeep
+.coverage
+.venv/
