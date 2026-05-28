@@ -48,13 +48,12 @@ def candidate_dates(sheet_name: str) -> List[Tuple[int, int]]:
         m1, d1 = int(digits[0]), int(digits[1:])
         if _valid(m1, d1):
             out.append((m1, d1))
-        # MMD (e.g., 115 = Nov 5) -- only when middle digit is non-zero;
-        # otherwise MDD's day already represents a single-digit day (e.g.,
-        # "104" is Jan 4, not also Oct 4).
-        if digits[1] != "0":
-            m2, d2 = int(digits[:2]), int(digits[2])
-            if _valid(m2, d2) and (m2, d2) not in out:
-                out.append((m2, d2))
+        # MMD (e.g., 115 = Nov 5, 104 = Oct 4). Always emit both
+        # candidates when valid; resolution happens against Drive mtime in
+        # pick_agreement_sheet.py.
+        m2, d2 = int(digits[:2]), int(digits[2])
+        if _valid(m2, d2) and (m2, d2) not in out:
+            out.append((m2, d2))
     elif n == 4:
         # MMDD
         month, day = int(digits[:2]), int(digits[2:])

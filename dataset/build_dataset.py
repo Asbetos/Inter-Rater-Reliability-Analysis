@@ -10,6 +10,7 @@ Source selection: --local-root <path>  OR  --drive-folder-id <id> + --credential
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 from typing import Dict, List
@@ -64,19 +65,21 @@ def _load_overrides(path: Path) -> Dict[str, str]:
     return raw or {}
 
 
+_VOLUME_NUM_RE = re.compile(r"[Vv]olume[^\d]*?(\d+)")
+
+
 def _is_legacy_volume(vol_id: str) -> bool:
-    """Volume number <= 63 is the legacy identifier-format cohort."""
-    # Extract first integer token from the volume id (best-effort)
-    digits = ""
-    for ch in vol_id:
-        if ch.isdigit():
-            digits += ch
-        elif digits:
-            break
-    if not digits:
+    """Volume number <= 63 is the legacy identifier-format cohort.
+
+    The volume number is extracted from the trailing 'Volume N' substring
+    in the volume_id (e.g., 'Volume 82', 'Volume-82', 'volume 134 - Part I').
+    Returns False if no such substring is present.
+    """
+    m = _VOLUME_NUM_RE.search(vol_id)
+    if not m:
         return False
     try:
-        return int(digits) <= 63
+        return int(m.group(1)) <= 63
     except ValueError:
         return False
 

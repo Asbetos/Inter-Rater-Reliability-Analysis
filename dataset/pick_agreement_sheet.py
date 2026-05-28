@@ -75,7 +75,7 @@ def pick(
         1 for (m, d) in raw_cands
         if date(drive_mtime.year, m, d) <= drive_mtime.date()
     )
-    if len(sheet_names) == 1 and raw_valid_count > 1:
+    if raw_valid_count > 1:
         return {
             "chosen_sheet": best_sheet,
             "chosen_date": sheet_to_date[best_sheet],

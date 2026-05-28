@@ -27,4 +27,7 @@ def test_sheet_without_digits_returns_empty():
 
 def test_extracts_digits_anywhere():
     assert pas.candidate_dates("agreement 33 v.2") == [(3, 3)]
-    assert pas.candidate_dates("104 agreement") == [(1, 4)]
+    # "104" is ambiguous (Jan 4 or Oct 4); resolution happens in pick_agreement_sheet
+    cands = pas.candidate_dates("104 agreement")
+    assert (1, 4) in cands
+    assert (10, 4) in cands

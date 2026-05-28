@@ -68,6 +68,24 @@ def test_no_candidates_flags_manual_review():
     assert result["manual_review"] is True
 
 
+def test_multi_sheet_with_ambiguous_chosen_sheet_flags_manual_review():
+    # Drive mtime Dec 31 -- "115" candidates are Jan 15 AND Nov 5 (both valid).
+    # Internal resolution picks the latest <= mtime, i.e. Nov 5.
+    # The OTHER sheet "1215" (Dec 15) is unambiguous but LATER than Nov 5.
+    # Best (earliest) chosen_sheet is therefore "115 agreement" (Nov 5).
+    # But "115" is internally ambiguous, so should flag manual_review.
+    drive_mtime = datetime(2025, 12, 31, tzinfo=timezone.utc)
+    result = pas.pick(
+        sheet_names=["115 agreement", "1215 agreement"],
+        drive_mtime=drive_mtime,
+        overrides={},
+        volume_id="X",
+    )
+    assert result["chosen_sheet"] is not None
+    assert result["manual_review"] is True
+    assert "ambiguous" in result["manual_review_reason"]
+
+
 def test_empty_sheets_flags_manual_review():
     drive_mtime = datetime(2025, 3, 15, tzinfo=timezone.utc)
     result = pas.pick(
