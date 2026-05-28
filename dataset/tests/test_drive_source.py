@@ -37,3 +37,38 @@ def test_workbook_handle_has_mime_type_field():
     assert h.mime_type == ""  # default
     h2 = drive_source.WorkbookHandle(id="x", name="y", mime_type="some/mime")
     assert h2.mime_type == "some/mime"
+
+
+from unittest.mock import MagicMock
+
+
+def test_oauth_drive_source_lists_workbooks_with_mime_types():
+    fake_service = MagicMock()
+    fake_service.files().list().execute.side_effect = [
+        {
+            "files": [
+                {"id": "abc", "name": "Volume-X", "mimeType": drive_source.MIMETYPE_GOOGLE_SHEET, "modifiedTime": "2025-10-04T12:00:00Z"},
+                {"id": "def", "name": "Volume-Y.xlsx", "mimeType": drive_source.MIMETYPE_XLSX, "modifiedTime": "2025-10-05T12:00:00Z"},
+            ],
+            "nextPageToken": None,
+        }
+    ]
+    src = drive_source.OAuthDriveSource(folder_id="folder-1", service=fake_service)
+    handles = src.list_workbooks()
+    assert sorted(h.name for h in handles) == ["Volume-X", "Volume-Y.xlsx"]
+    by_name = {h.name: h.mime_type for h in handles}
+    assert by_name["Volume-X"] == drive_source.MIMETYPE_GOOGLE_SHEET
+    assert by_name["Volume-Y.xlsx"] == drive_source.MIMETYPE_XLSX
+
+
+def test_oauth_drive_source_last_modified_parses_drive_timestamp():
+    fake_service = MagicMock()
+    fake_service.files().get().execute.return_value = {
+        "id": "abc", "name": "Volume-X", "modifiedTime": "2025-10-04T12:00:00Z"
+    }
+    src = drive_source.OAuthDriveSource(folder_id="folder-1", service=fake_service)
+    handle = drive_source.WorkbookHandle(id="abc", name="Volume-X", mime_type=drive_source.MIMETYPE_GOOGLE_SHEET)
+    mtime = src.last_modified(handle)
+    assert mtime.year == 2025
+    assert mtime.month == 10
+    assert mtime.day == 4
