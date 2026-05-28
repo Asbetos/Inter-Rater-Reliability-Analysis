@@ -6,3 +6,18 @@ outputs/*.md
 !outputs/.gitkeep
 .coverage
 .venv/
+
+# OAuth credentials and tokens (never commit)
+credentials.json
+**/credentials.json
+token.json
+**/token.json
+**/code_verifier.tmp
+
+# Dataset outputs (generated; large)
+outputs/irr_dataset_*.csv
+outputs/irr_dataset_*.parquet
+outputs/completeness_report.csv
+outputs/manual_review.csv
+outputs/agreement_sheet_picks.csv
+outputs/dataset_metadata.csv
