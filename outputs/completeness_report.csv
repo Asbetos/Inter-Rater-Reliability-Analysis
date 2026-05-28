@@ -1,5 +1,5 @@
 volume_file,volume_id,passes,passes_heuristic,passes_tracker,heuristic_reason,tracker_raw_status,n_agreement_sheets,fill_Leah,fill_Bridget,fill_Brian,fill_Rachel,fill_Alia
-2026-04-13 First Coding Check _ Volume 80,2026-04-13 First Coding Check _ Volume 80,False,False,,no_agreement_sheet,,0,0.0,0.0,0.008585293019783502,,
+2026-04-13 First Coding Check _ Volume 80,2026-04-13 First Coding Check _ Volume 80,False,False,,no_agreement_sheet,,0,0.0,0.0,0.03833333333333333,,
 2026-05-27 First Coding Check: Volume 77,2026-05-27 First Coding Check: Volume 77,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,0.0
 2026-05-27 First Coding Check: Volume 78,2026-05-27 First Coding Check: Volume 78,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,0.0
 2026-05-27 First Coding Check: Volume 76,2026-05-27 First Coding Check: Volume 76,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,0.0
@@ -8,27 +8,27 @@ volume_file,volume_id,passes,passes_heuristic,passes_tracker,heuristic_reason,tr
 2026-05-18 First Coding Check: Volume 74,2026-05-18 First Coding Check: Volume 74,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,0.0
 2026-05-18 First Coding Check: Volume 72,2026-05-18 First Coding Check: Volume 72,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,
 2026-05-15 First Coding Check: Volume 71,2026-05-15 First Coding Check: Volume 71,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,0.0
-2026-04-13 First Coding Check _ Volume 82,2026-04-13 First Coding Check _ Volume 82,False,False,,coder_Leah_underfilled,,1,0.031133250311332503,0.03144458281444583,0.09339975093399751,0.12453300124533001,0.09371108343711083
-2026-04-13 First Coding Check _ Volume 81,2026-04-13 First Coding Check _ Volume 81,False,False,,coder_Leah_underfilled,,1,0.053830227743271224,0.051759834368530024,0.2070393374741201,0.3105590062111801,
-2026-03-23 First Coding Check _ Volume 95,2026-03-23 First Coding Check _ Volume 95,False,False,,coder_Leah_underfilled,,3,0.03474635163307853,0.03509381514940931,0.13898540653231412,0.10423905489923559,0.10458651841556636
-2025-12-05 First Coding Check : Volume 124,2025-12-05 First Coding Check : Volume 124,False,False,,coder_Leah_underfilled,,6,0.16666666666666666,0.16666666666666666,0.11624527753560011,0.08718395815170009,0.5016666666666667
-2025-10-05 First Coding Check: Volume 132,2025-10-05 First Coding Check: Volume 132,False,False,,coder_Leah_underfilled,,5,0.022904260192395786,0.022904260192395786,,0.04580852038479157,0.04580852038479157
-2026-03-20 First Coding Check _ Volume 94,2026-03-20 First Coding Check _ Volume 94,False,False,,coder_Leah_underfilled,,4,0.022055580061755623,0.022055580061755623,0.06616674018526687,0.08822232024702249,0.06616674018526687
-2025-12-05 First Coding Check : Volume 122,2025-12-05 First Coding Check : Volume 122,False,False,,coder_Rachel_underfilled,,4,,,0.12062726176115803,0.12062726176115803,
-2026-03-06 First Coding Check: Volume 119,2026-03-06 First Coding Check: Volume 119,False,False,,coder_Leah_underfilled,,4,0.02097315436241611,0.02097315436241611,0.06291946308724833,0.08389261744966443,0.06291946308724833
+2026-04-13 First Coding Check _ Volume 82,2026-04-13 First Coding Check _ Volume 82,True,True,,ok,,1,0.16666666666666666,0.16833333333333333,0.5,0.6666666666666666,0.5016666666666667
+2026-04-13 First Coding Check _ Volume 81,2026-04-13 First Coding Check _ Volume 81,True,True,,ok,,1,0.17333333333333334,0.16666666666666666,0.6666666666666666,1.0,
+2026-03-23 First Coding Check _ Volume 95,2026-03-23 First Coding Check _ Volume 95,True,True,,ok,,3,0.16666666666666666,0.16833333333333333,0.6666666666666666,0.5,0.5016666666666667
+2025-12-05 First Coding Check : Volume 124,2025-12-05 First Coding Check : Volume 124,True,True,,ok,,6,0.16666666666666666,0.16666666666666666,0.6666666666666666,0.5,0.5016666666666667
+2025-10-05 First Coding Check: Volume 132,2025-10-05 First Coding Check: Volume 132,True,True,,ok,,5,0.3333333333333333,0.3333333333333333,,0.6666666666666666,0.6666666666666666
+2026-03-20 First Coding Check _ Volume 94,2026-03-20 First Coding Check _ Volume 94,True,True,,ok,,4,0.16666666666666666,0.16666666666666666,0.5,0.6666666666666666,0.5
+2025-12-05 First Coding Check : Volume 122,2025-12-05 First Coding Check : Volume 122,True,True,,ok,,4,,,1.0,1.0,
+2026-03-06 First Coding Check: Volume 119,2026-03-06 First Coding Check: Volume 119,True,True,,ok,,4,0.16666666666666666,0.16666666666666666,0.5,0.6666666666666666,0.5
 2025-06-17 first coding check : Volume 134 - Part I,2025-06-17 first coding check : Volume 134 - Part I,False,False,,coder_Leah_underfilled,,3,0.0,0.0,,1.0,1.0
-2026-03-20 First Coding Check _ Volume 91,2026-03-20 First Coding Check _ Volume 91,False,False,,coder_Leah_underfilled,,4,0.0328515111695138,0.03318002628120893,0.1314060446780552,0.09855453350854139,0.09855453350854139
-2026-02-27 First Coding Check : Volume 114,2026-02-27 First Coding Check : Volume 114,False,False,,coder_Leah_underfilled,,5,0.026102845210127904,0.026102845210127904,0.10441138084051162,0.07830853563038372,0.07830853563038372
+2026-03-20 First Coding Check _ Volume 91,2026-03-20 First Coding Check _ Volume 91,True,True,,ok,,4,0.16666666666666666,0.16833333333333333,0.6666666666666666,0.5,0.5
+2026-02-27 First Coding Check : Volume 114,2026-02-27 First Coding Check : Volume 114,True,True,,ok,,5,0.16666666666666666,0.16666666666666666,0.6666666666666666,0.5,0.5
 2026-04-13 First Coding Check _ Volume 79,2026-04-13 First Coding Check _ Volume 79,False,False,,no_agreement_sheet,,0,0.0,0.0,0.0,0.0,0.0
-2026-03-20 First Coding Check _ Volume 93,2026-03-20 First Coding Check _ Volume 93,False,False,,coder_Leah_underfilled,,3,0.03944773175542406,0.03944773175542406,0.11834319526627218,0.11834319526627218,0.15779092702169625
-2026-02-18 First Coding Check : Volume 109,2026-02-18 First Coding Check : Volume 109,False,False,,coder_Leah_underfilled,,3,0.05515719801434087,0.05515719801434087,0.1654715940430226,0.1654715940430226,0.2206287920573635
-2025-12-05 First Coding Check : Volume 120,2025-12-05 First Coding Check : Volume 120,False,False,,coder_Rachel_underfilled,,3,,,0.16051364365971107,0.16051364365971107,
-2025-12-05 First Coding Check : Volume 127,2025-12-05 First Coding Check : Volume 127,False,False,,coder_Leah_underfilled,,4,0.16666666666666666,0.16666666666666666,0.15592515592515593,0.15592515592515593,0.6666666666666666
-2025-12-05 First Coding Check : Volume 126,2025-12-05 First Coding Check : Volume 126,False,False,,coder_Leah_underfilled,,3,0.03974813065722157,0.03935458480913026,0.1180637544273908,0.15741833923652104,0.1180637544273908
-2025-11-17 First Coding Check : Volume 130,2025-11-17 First Coding Check : Volume 130,False,False,,coder_Leah_underfilled,,5,0.03257328990228013,0.03257328990228013,0.06514657980456026,0.13029315960912052,0.13029315960912052
-2025-10-24 First Coding Check : Volume 131,2025-10-24 First Coding Check : Volume 131,False,False,,coder_Leah_underfilled,,6,0.05595970900951315,0.05595970900951315,,0.1119194180190263,0.1119194180190263
-2025-09-14 First Coding Check: Volume 62,2025-09-14 First Coding Check: Volume 62,False,False,,coder_Leah_underfilled,,2,0.09242144177449169,0.09242144177449169,,0.18484288354898337,0.18484288354898337
-2025-09-05 First Coding Check : Volume 63,2025-09-05 First Coding Check : Volume 63,False,False,,coder_Leah_underfilled,,3,0.07451564828614009,0.0748882265275708,,0.14865871833084948,0.14865871833084948
-2025-09-14 First Coding Check: Volume 61,2025-09-14 First Coding Check: Volume 61,False,False,,coder_Leah_underfilled,,2,0.11587485515643106,0.11587485515643106,,0.23174971031286212,0.23174971031286212
-2025-08-01 First Coding Check : Volume 133,2025-08-01 First Coding Check : Volume 133,False,False,,coder_Bridget_underfilled,,4,,0.07447994056463596,,0.09268202080237742,0.09323922734026746
-2025-06-30 Second Coding Check : Volume 134 - Part 2,2025-06-30 Second Coding Check : Volume 134 - Part 2,False,False,,coder_Leah_underfilled,,3,0.04318070718592146,0.032589212970506765,,0.032589212970506765,0.016457552550105916
+2026-03-20 First Coding Check _ Volume 93,2026-03-20 First Coding Check _ Volume 93,True,True,,ok,,3,0.16666666666666666,0.16666666666666666,0.5,0.5,0.6666666666666666
+2026-02-18 First Coding Check : Volume 109,2026-02-18 First Coding Check : Volume 109,True,True,,ok,,3,0.16666666666666666,0.16666666666666666,0.5,0.5,0.6666666666666666
+2025-12-05 First Coding Check : Volume 120,2025-12-05 First Coding Check : Volume 120,True,True,,ok,,3,,,1.0,1.0,
+2025-12-05 First Coding Check : Volume 127,2025-12-05 First Coding Check : Volume 127,True,True,,ok,,4,0.16666666666666666,0.16666666666666666,0.5,0.5,0.6666666666666666
+2025-12-05 First Coding Check : Volume 126,2025-12-05 First Coding Check : Volume 126,True,True,,ok,,3,0.16833333333333333,0.16666666666666666,0.5,0.6666666666666666,0.5
+2025-11-17 First Coding Check : Volume 130,2025-11-17 First Coding Check : Volume 130,True,True,,ok,,5,0.16666666666666666,0.16666666666666666,0.3333333333333333,0.6666666666666666,0.6666666666666666
+2025-10-24 First Coding Check : Volume 131,2025-10-24 First Coding Check : Volume 131,True,True,,ok,,6,0.3333333333333333,0.3333333333333333,,0.6666666666666666,0.6666666666666666
+2025-09-14 First Coding Check: Volume 62,2025-09-14 First Coding Check: Volume 62,True,True,,ok,,2,0.3333333333333333,0.3333333333333333,,0.6666666666666666,0.6666666666666666
+2025-09-05 First Coding Check : Volume 63,2025-09-05 First Coding Check : Volume 63,True,True,,ok,,3,0.3333333333333333,0.335,,0.665,0.665
+2025-09-14 First Coding Check: Volume 61,2025-09-14 First Coding Check: Volume 61,True,True,,ok,,2,0.3333333333333333,0.3333333333333333,,0.6666666666666666,0.6666666666666666
+2025-08-01 First Coding Check : Volume 133,2025-08-01 First Coding Check : Volume 133,True,True,,ok,,4,,0.6683333333333333,,0.8316666666666667,0.8366666666666667
+2025-06-30 Second Coding Check : Volume 134 - Part 2,2025-06-30 Second Coding Check : Volume 134 - Part 2,True,True,,ok,,3,0.6625,0.5,,0.5,0.2525

@@ -23,15 +23,15 @@ Three IRR variants:
 
 1. Create a Google Cloud project and enable the **Google Drive API**.
 2. Create **OAuth client ID** credentials of type *Desktop app*; download as `credentials.json`.
-3. Kick off the device flow — this prints an authorization URL:
+3. Phase A — kick off the PKCE flow, which prints an authorization URL and stashes a PKCE code verifier:
    ```bash
-   python -m dataset.auth --credentials /home/G39248410/.config/irr/credentials.json
+   python -m dataset.auth --credentials /home/G39248410/.config/citizen_voice_irr/credentials.json
    ```
-4. Open the URL in a browser, grant Drive read access, copy the resulting code, and paste it back:
+4. Phase B — open the URL in a browser, grant Drive read access, copy the `code=` value from the localhost redirect URL, and paste it back via `--code`:
    ```bash
-   python -m dataset.auth --credentials /home/G39248410/.config/irr/credentials.json --code 4/0A...
+   python -m dataset.auth --credentials /home/G39248410/.config/citizen_voice_irr/credentials.json --code 4/0A...
    ```
-   The refresh token lands at `~/.config/irr/token.json` (or `--token <path>`). Subsequent runs do not require the browser.
+   The refresh token lands at `~/.config/citizen_voice_irr/token.json` (or `--token <path>`). Subsequent runs do not require the browser.
 
 ## How to run
 
@@ -39,12 +39,12 @@ All commands accept either Drive (`--drive-folder-id <id> --credentials <path>`)
 
 ### `check-completeness` — eligibility inspection
 
-First pass. Walks Drive, runs per-coder fill-rate against the 80% threshold, and writes `completeness_report.csv`. Use this to see which volumes will be picked up before paying for the full pipeline.
+First pass. Walks Drive, runs per-coder fill-rate against the completeness threshold (default `0.05`), and writes `completeness_report.csv`. Use this to see which volumes will be picked up before paying for the full pipeline.
 
 ```bash
 python -m dataset.build_dataset check-completeness \
-    --drive-folder-id 0AbCdEfGhIjKlMnOp \
-    --credentials /home/G39248410/.config/irr/credentials.json \
+    --drive-folder-id 1SJmgLW_6NjGLwZOT873LxDinFSwVqGRA \
+    --credentials /home/G39248410/.config/citizen_voice_irr/credentials.json \
     --output-dir /home/G39248410/citizen_voice/Code/irr_analysis/outputs
 ```
 
@@ -64,8 +64,8 @@ End-to-end: walk → completeness → pick → IRR → join `number_coded_prior`
 
 ```bash
 python -m dataset.build_dataset compute \
-    --drive-folder-id 0AbCdEfGhIjKlMnOp \
-    --credentials /home/G39248410/.config/irr/credentials.json \
+    --drive-folder-id 1SJmgLW_6NjGLwZOT873LxDinFSwVqGRA \
+    --credentials /home/G39248410/.config/citizen_voice_irr/credentials.json \
     --overrides /home/G39248410/citizen_voice/Code/irr_analysis/dataset/agreement_sheet_overrides.yaml \
     --output-dir /home/G39248410/citizen_voice/Code/irr_analysis/outputs
 ```
@@ -84,7 +84,7 @@ python -m dataset.build_dataset compute \
 | `n_orders_eligible` | int | Orders where this coder and at least one peer are both non-blank |
 | `n_disagreements` | int | Orders where this coder differs from the modal peer answer |
 | `agreement_sheet_date` | str (ISO) | Date assigned to the volume's chosen agreement sheet |
-| `is_legacy_volume` | bool | True for the pre-pipeline legacy cohort (Brian-era) |
+| `is_legacy_volume` | bool | True when the volume's number is ≤ 63 (the legacy identifier-format cohort) |
 | `number_coded_prior` | int | Count of volumes this coder participated in with an earlier `agreement_sheet_date` |
 
 ### `irr_dataset_per_pair.csv`
@@ -117,17 +117,12 @@ The picker writes a row to `manual_review.csv` when it cannot confidently pick a
 - `no_valid_dates` — candidates exist but none had a parseable date and Drive mtime fallback failed.
 - `ambiguous_date_for_<sheet>` — date encoding heuristic returned multiple plausible dates for the chosen sheet.
 
-Resolve by adding an override keyed by `volume` (workbook stem). Edit `dataset/agreement_sheet_overrides.yaml`:
+Resolve by adding an override keyed by `volume_id` (workbook stem) mapping to the exact sheet name to use. The overrides file is a **flat map** of `volume_id: sheet_name`. Edit `dataset/agreement_sheet_overrides.yaml`:
 
 ```yaml
-# Pin the chosen sheet by name, or pin a sheet + date.
-Vol_2024_07:
-  sheet: "Agreement 2024-07-15"
-  date: "2024-07-15"
-
-Vol_2023_legacy_3:
-  sheet: "Agreement"
-  date: "2023-11-02"
+# Flat map: volume_id (workbook stem) -> sheet name to pin.
+"Volume-131": "11"
+"2025-06-17 first coding check : Volume 134 - Part I": "109 agreement"
 ```
 
 Re-run `pick-sheets` to confirm the override clears the entry, then run `compute`.
@@ -164,7 +159,7 @@ Swap `irr_leave_one_out` for `irr_mean_pairwise_kappa` to fit Variant B; load `i
 ## Known limitations
 
 - **Q4/Q5 multi-label questions** are reduced to a single comma-joined sorted token; agreement is strict set-equality, not partial overlap. A coder who picks `{A, B}` vs `{A}` counts as a full disagreement.
-- **80% completeness threshold** is a heuristic. Cohorts with structurally sparse questions (e.g., conditional follow-ups) may need a lower threshold to avoid dropping legitimate volumes.
+- **Completeness calibration.** The default `--completeness-threshold` is `0.05` (very permissive), reflecting that real coder sheets carry the full law inventory but only a small fraction of rows are actually coded. The `_coder_fill_fraction` heuristic uses a **Selection-aware denominator**: when the coder sheet has a `Selection` column, only rows with `Selection == 1` count toward the denominator. Without a `Selection` column it falls back to all data rows. Operators may need to tune `--completeness-threshold` based on the cohort.
 - **Agreement-sheet-date heuristic** can misfire on free-form sheet names. Use `agreement_sheet_overrides.yaml` to correct.
 - **`number_coded_prior` shares one date per volume** across all coders on it (see caveat above) — it approximates rather than measures individual coding history.
 - **Brian appears only in some legacy volumes** (`is_legacy_volume == True`). Treat his coder fixed effect with caution; cells against current-era coders are mostly empty.

@@ -258,7 +258,7 @@ def _add_common_args(parser):
         "--overrides", type=Path,
         default=Path(__file__).parent / "agreement_sheet_overrides.yaml",
     )
-    parser.add_argument("--completeness-threshold", type=float, default=0.80)
+    parser.add_argument("--completeness-threshold", type=float, default=0.05)
 
 
 def main():

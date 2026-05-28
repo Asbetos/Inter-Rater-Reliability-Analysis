@@ -16,22 +16,37 @@ def _coder_fill_fraction(wb: openpyxl.Workbook, coder: str) -> float:
     header = next(ws.iter_rows(values_only=True), None)
     if header is None:
         return 0.0
-    # Find the column with the first per-question answer.
-    # Header convention is "1. (question)" or "Q1. (question)" — accept either.
+    # Find Q1 column: header starts with "1." or "Q1." (tolerant)
     q1_idx = None
     for i, h in enumerate(header):
-        if h and isinstance(h, str):
-            s = h.lstrip()
-            if s.startswith("1.") or s.startswith("Q1.") or s.startswith("q1."):
-                q1_idx = i
-                break
+        if not (h and isinstance(h, str)):
+            continue
+        prefix = h.split(".", 1)[0].strip().upper()
+        if prefix in ("1", "Q1"):
+            q1_idx = i
+            break
     if q1_idx is None:
         return 0.0
+    # Find Selection column
+    sel_idx = None
+    for i, h in enumerate(header):
+        if isinstance(h, str) and h.strip().lower() == "selection":
+            sel_idx = i
+            break
     total = 0
     filled = 0
     for row in ws.iter_rows(min_row=2, values_only=True):
         if row is None or row[0] is None:
             continue
+        # Selection-aware denominator
+        if sel_idx is not None:
+            sel = row[sel_idx] if sel_idx < len(row) else None
+            try:
+                is_selected = int(sel) == 1
+            except (TypeError, ValueError):
+                is_selected = (sel == "1")
+            if not is_selected:
+                continue
         total += 1
         v = row[q1_idx] if q1_idx < len(row) else None
         if v is not None and (not isinstance(v, str) or v.strip() not in ("", "(blank)")):
