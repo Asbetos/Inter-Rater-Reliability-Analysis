@@ -72,3 +72,23 @@ def test_oauth_drive_source_last_modified_parses_drive_timestamp():
     assert mtime.year == 2025
     assert mtime.month == 10
     assert mtime.day == 4
+
+
+def test_drive_walk_filters_lock_and_draft_files(tmp_path):
+    import shutil
+    import drive_walk
+    # Copy the mini-Drive fixture and add some noise files
+    target = tmp_path / "drive_copy"
+    shutil.copytree(MINI_DRIVE_DIR, target)
+    (target / "~$Volume-A_complete.xlsx").write_text("lock file")
+    (target / "TEMPLATE_volume.xlsx").write_text("template")
+    (target / ".hidden_DRAFT.xlsx").write_text("draft")
+    src = drive_source.LocalDriveSource(target)
+    handles = drive_walk.list_eligible(src)
+    names = sorted(h.name for h in handles)
+    assert names == [
+        "Volume-A_complete.xlsx",
+        "Volume-B_two_agreements.xlsx",
+        "Volume-C_incomplete.xlsx",
+        "Volume-D_no_agreement.xlsx",
+    ]
