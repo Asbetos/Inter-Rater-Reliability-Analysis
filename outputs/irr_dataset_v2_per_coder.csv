@@ -1,4 +1,16 @@
 coder,volume,question,n_assigned_orders,n_disagreements,pct_agreement,number_coded_prior,is_legacy_volume,agreement_sheet_date,chosen_sheet
+Alia,Volume 134 - Part I,Q1,200,7,0.965,3,False,2025-10-09,109 agreement
+Rachel,Volume 134 - Part I,Q1,200,7,0.965,3,False,2025-10-09,109 agreement
+Alia,Volume 134 - Part I,Q2,200,1,0.995,3,False,2025-10-09,109 agreement
+Rachel,Volume 134 - Part I,Q2,200,1,0.995,3,False,2025-10-09,109 agreement
+Alia,Volume 134 - Part I,Q3,200,0,1.0,3,False,2025-10-09,109 agreement
+Rachel,Volume 134 - Part I,Q3,200,0,1.0,3,False,2025-10-09,109 agreement
+Alia,Volume 134 - Part I,Q4,200,2,0.99,3,False,2025-10-09,109 agreement
+Rachel,Volume 134 - Part I,Q4,200,2,0.99,3,False,2025-10-09,109 agreement
+Alia,Volume 134 - Part I,Q5,200,2,0.99,3,False,2025-10-09,109 agreement
+Rachel,Volume 134 - Part I,Q5,200,2,0.99,3,False,2025-10-09,109 agreement
+Alia,Volume 134 - Part I,Q6,200,18,0.91,3,False,2025-10-09,109 agreement
+Rachel,Volume 134 - Part I,Q6,200,18,0.91,3,False,2025-10-09,109 agreement
 Alia,Volume 95,Q1,300,7,0.9766666666666667,17,False,2026-04-21,agreement 421
 Brian,Volume 95,Q1,400,7,0.9825,12,False,2026-04-21,agreement 421
 Bridget,Volume 95,Q1,100,1,0.99,15,False,2026-04-21,agreement 421
@@ -69,30 +81,30 @@ Brian,Volume 124,Q7,400,31,0.9225,5,False,2026-02-24,agreement 224
 Bridget,Volume 124,Q7,100,95,0.05,8,False,2026-02-24,agreement 224
 Leah,Volume 124,Q7,100,8,0.92,8,False,2026-02-24,agreement 224
 Rachel,Volume 124,Q7,300,21,0.93,12,False,2026-02-24,agreement 224
-Alia,Volume 132,Q1,200,11,0.945,4,False,2025-11-13,agreement 1113
+Alia,Volume 132,Q1,200,11,0.945,5,False,2025-11-13,agreement 1113
 Bridget,Volume 132,Q1,200,11,0.945,3,False,2025-11-13,agreement 1113
 Leah,Volume 132,Q1,200,11,0.945,3,False,2025-11-13,agreement 1113
-Rachel,Volume 132,Q1,200,11,0.945,4,False,2025-11-13,agreement 1113
-Alia,Volume 132,Q2,200,2,0.99,4,False,2025-11-13,agreement 1113
+Rachel,Volume 132,Q1,200,11,0.945,5,False,2025-11-13,agreement 1113
+Alia,Volume 132,Q2,200,2,0.99,5,False,2025-11-13,agreement 1113
 Bridget,Volume 132,Q2,200,2,0.99,3,False,2025-11-13,agreement 1113
 Leah,Volume 132,Q2,200,0,1.0,3,False,2025-11-13,agreement 1113
-Rachel,Volume 132,Q2,200,0,1.0,4,False,2025-11-13,agreement 1113
-Alia,Volume 132,Q3,200,0,1.0,4,False,2025-11-13,agreement 1113
+Rachel,Volume 132,Q2,200,0,1.0,5,False,2025-11-13,agreement 1113
+Alia,Volume 132,Q3,200,0,1.0,5,False,2025-11-13,agreement 1113
 Bridget,Volume 132,Q3,200,0,1.0,3,False,2025-11-13,agreement 1113
 Leah,Volume 132,Q3,200,0,1.0,3,False,2025-11-13,agreement 1113
-Rachel,Volume 132,Q3,200,0,1.0,4,False,2025-11-13,agreement 1113
-Alia,Volume 132,Q4,200,3,0.985,4,False,2025-11-13,agreement 1113
+Rachel,Volume 132,Q3,200,0,1.0,5,False,2025-11-13,agreement 1113
+Alia,Volume 132,Q4,200,3,0.985,5,False,2025-11-13,agreement 1113
 Bridget,Volume 132,Q4,200,3,0.985,3,False,2025-11-13,agreement 1113
 Leah,Volume 132,Q4,200,3,0.985,3,False,2025-11-13,agreement 1113
-Rachel,Volume 132,Q4,200,3,0.985,4,False,2025-11-13,agreement 1113
-Alia,Volume 132,Q5,200,3,0.985,4,False,2025-11-13,agreement 1113
+Rachel,Volume 132,Q4,200,3,0.985,5,False,2025-11-13,agreement 1113
+Alia,Volume 132,Q5,200,3,0.985,5,False,2025-11-13,agreement 1113
 Bridget,Volume 132,Q5,200,3,0.985,3,False,2025-11-13,agreement 1113
 Leah,Volume 132,Q5,200,2,0.99,3,False,2025-11-13,agreement 1113
-Rachel,Volume 132,Q5,200,2,0.99,4,False,2025-11-13,agreement 1113
-Alia,Volume 132,Q6,200,11,0.945,4,False,2025-11-13,agreement 1113
+Rachel,Volume 132,Q5,200,2,0.99,5,False,2025-11-13,agreement 1113
+Alia,Volume 132,Q6,200,11,0.945,5,False,2025-11-13,agreement 1113
 Bridget,Volume 132,Q6,200,11,0.945,3,False,2025-11-13,agreement 1113
 Leah,Volume 132,Q6,200,16,0.92,3,False,2025-11-13,agreement 1113
-Rachel,Volume 132,Q6,200,16,0.92,4,False,2025-11-13,agreement 1113
+Rachel,Volume 132,Q6,200,16,0.92,5,False,2025-11-13,agreement 1113
 Alia,Volume 94,Q1,300,21,0.93,16,False,2026-04-12,agreement 412
 Brian,Volume 94,Q1,300,17,0.9433333333333334,11,False,2026-04-12,agreement 412
 Bridget,Volume 94,Q1,100,9,0.91,14,False,2026-04-12,agreement 412
@@ -177,18 +189,6 @@ Brian,Volume 119,Q7,300,16,0.9466666666666667,8,False,2026-03-24,agreement 324
 Bridget,Volume 119,Q7,100,92,0.08,11,False,2026-03-24,agreement 324
 Leah,Volume 119,Q7,100,75,0.25,11,False,2026-03-24,agreement 324
 Rachel,Volume 119,Q7,400,57,0.8575,15,False,2026-03-24,agreement 324
-Alia,Volume 134 - Part I,Q1,200,7,0.965,7,False,2026-01-09,109 agreement
-Rachel,Volume 134 - Part I,Q1,200,7,0.965,7,False,2026-01-09,109 agreement
-Alia,Volume 134 - Part I,Q2,200,1,0.995,7,False,2026-01-09,109 agreement
-Rachel,Volume 134 - Part I,Q2,200,1,0.995,7,False,2026-01-09,109 agreement
-Alia,Volume 134 - Part I,Q3,200,0,1.0,7,False,2026-01-09,109 agreement
-Rachel,Volume 134 - Part I,Q3,200,0,1.0,7,False,2026-01-09,109 agreement
-Alia,Volume 134 - Part I,Q4,200,2,0.99,7,False,2026-01-09,109 agreement
-Rachel,Volume 134 - Part I,Q4,200,2,0.99,7,False,2026-01-09,109 agreement
-Alia,Volume 134 - Part I,Q5,200,2,0.99,7,False,2026-01-09,109 agreement
-Rachel,Volume 134 - Part I,Q5,200,2,0.99,7,False,2026-01-09,109 agreement
-Alia,Volume 134 - Part I,Q6,200,18,0.91,7,False,2026-01-09,109 agreement
-Rachel,Volume 134 - Part I,Q6,200,18,0.91,7,False,2026-01-09,109 agreement
 Alia,Volume 91,Q1,300,14,0.9533333333333334,15,False,2026-04-05,agreement 45
 Brian,Volume 91,Q1,400,15,0.9625,10,False,2026-04-05,agreement 45
 Bridget,Volume 91,Q1,100,6,0.94,13,False,2026-04-05,agreement 45
@@ -413,146 +413,146 @@ Brian,Volume 126,Q7,300,23,0.9233333333333333,4,False,2026-02-17,agreement 217
 Bridget,Volume 126,Q7,100,7,0.93,7,False,2026-02-17,agreement 217
 Leah,Volume 126,Q7,100,21,0.79,7,False,2026-02-17,agreement 217
 Rachel,Volume 126,Q7,400,33,0.9175,11,False,2026-02-17,agreement 217
-Alia,Volume 130,Q1,400,35,0.9125,6,False,2026-01-01,agreement 11
+Alia,Volume 130,Q1,400,35,0.9125,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q1,200,21,0.895,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q1,100,8,0.92,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q1,100,13,0.87,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q1,400,35,0.9125,6,False,2026-01-01,agreement 11
-Alia,Volume 130,Q2,400,0,1.0,6,False,2026-01-01,agreement 11
+Rachel,Volume 130,Q1,400,35,0.9125,7,False,2026-01-01,agreement 11
+Alia,Volume 130,Q2,400,0,1.0,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q2,200,2,0.99,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q2,100,2,0.98,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q2,100,0,1.0,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q2,400,0,1.0,6,False,2026-01-01,agreement 11
-Alia,Volume 130,Q3,400,0,1.0,6,False,2026-01-01,agreement 11
+Rachel,Volume 130,Q2,400,0,1.0,7,False,2026-01-01,agreement 11
+Alia,Volume 130,Q3,400,0,1.0,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q3,200,1,0.995,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q3,100,1,0.99,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q3,100,0,1.0,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q3,400,0,1.0,6,False,2026-01-01,agreement 11
-Alia,Volume 130,Q4,400,6,0.985,6,False,2026-01-01,agreement 11
+Rachel,Volume 130,Q3,400,0,1.0,7,False,2026-01-01,agreement 11
+Alia,Volume 130,Q4,400,6,0.985,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q4,200,3,0.985,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q4,100,2,0.98,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q4,100,1,0.99,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q4,400,6,0.985,6,False,2026-01-01,agreement 11
-Alia,Volume 130,Q5,400,2,0.995,6,False,2026-01-01,agreement 11
+Rachel,Volume 130,Q4,400,6,0.985,7,False,2026-01-01,agreement 11
+Alia,Volume 130,Q5,400,2,0.995,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q5,200,3,0.985,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q5,100,1,0.99,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q5,100,2,0.98,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q5,400,2,0.995,6,False,2026-01-01,agreement 11
-Alia,Volume 130,Q6,400,20,0.95,6,False,2026-01-01,agreement 11
+Rachel,Volume 130,Q5,400,2,0.995,7,False,2026-01-01,agreement 11
+Alia,Volume 130,Q6,400,20,0.95,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q6,200,17,0.915,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q6,100,7,0.93,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q6,100,10,0.9,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q6,400,20,0.95,6,False,2026-01-01,agreement 11
-Alia,Volume 130,Q7,400,80,0.8,6,False,2026-01-01,agreement 11
+Rachel,Volume 130,Q6,400,20,0.95,7,False,2026-01-01,agreement 11
+Alia,Volume 130,Q7,400,80,0.8,7,False,2026-01-01,agreement 11
 Brian,Volume 130,Q7,200,23,0.885,0,False,2026-01-01,agreement 11
 Bridget,Volume 130,Q7,100,12,0.88,5,False,2026-01-01,agreement 11
 Leah,Volume 130,Q7,100,11,0.89,5,False,2026-01-01,agreement 11
-Rachel,Volume 130,Q7,400,80,0.8,6,False,2026-01-01,agreement 11
-Alia,Volume 131,Q1,200,11,0.945,5,False,2025-11-21,agreement 1121
+Rachel,Volume 130,Q7,400,80,0.8,7,False,2026-01-01,agreement 11
+Alia,Volume 131,Q1,200,11,0.945,6,False,2025-11-21,agreement 1121
 Bridget,Volume 131,Q1,200,11,0.945,4,False,2025-11-21,agreement 1121
 Leah,Volume 131,Q1,200,1,0.995,4,False,2025-11-21,agreement 1121
-Rachel,Volume 131,Q1,200,1,0.995,5,False,2025-11-21,agreement 1121
-Alia,Volume 131,Q2,200,2,0.99,5,False,2025-11-21,agreement 1121
+Rachel,Volume 131,Q1,200,1,0.995,6,False,2025-11-21,agreement 1121
+Alia,Volume 131,Q2,200,2,0.99,6,False,2025-11-21,agreement 1121
 Bridget,Volume 131,Q2,200,2,0.99,4,False,2025-11-21,agreement 1121
 Leah,Volume 131,Q2,200,0,1.0,4,False,2025-11-21,agreement 1121
-Rachel,Volume 131,Q2,200,0,1.0,5,False,2025-11-21,agreement 1121
-Alia,Volume 131,Q3,200,0,1.0,5,False,2025-11-21,agreement 1121
+Rachel,Volume 131,Q2,200,0,1.0,6,False,2025-11-21,agreement 1121
+Alia,Volume 131,Q3,200,0,1.0,6,False,2025-11-21,agreement 1121
 Bridget,Volume 131,Q3,200,0,1.0,4,False,2025-11-21,agreement 1121
 Leah,Volume 131,Q3,200,0,1.0,4,False,2025-11-21,agreement 1121
-Rachel,Volume 131,Q3,200,0,1.0,5,False,2025-11-21,agreement 1121
-Alia,Volume 131,Q4,200,3,0.985,5,False,2025-11-21,agreement 1121
+Rachel,Volume 131,Q3,200,0,1.0,6,False,2025-11-21,agreement 1121
+Alia,Volume 131,Q4,200,3,0.985,6,False,2025-11-21,agreement 1121
 Bridget,Volume 131,Q4,200,3,0.985,4,False,2025-11-21,agreement 1121
 Leah,Volume 131,Q4,200,0,1.0,4,False,2025-11-21,agreement 1121
-Rachel,Volume 131,Q4,200,0,1.0,5,False,2025-11-21,agreement 1121
-Alia,Volume 131,Q5,200,3,0.985,5,False,2025-11-21,agreement 1121
+Rachel,Volume 131,Q4,200,0,1.0,6,False,2025-11-21,agreement 1121
+Alia,Volume 131,Q5,200,3,0.985,6,False,2025-11-21,agreement 1121
 Bridget,Volume 131,Q5,200,3,0.985,4,False,2025-11-21,agreement 1121
 Leah,Volume 131,Q5,200,0,1.0,4,False,2025-11-21,agreement 1121
-Rachel,Volume 131,Q5,200,0,1.0,5,False,2025-11-21,agreement 1121
-Alia,Volume 131,Q6,200,11,0.945,5,False,2025-11-21,agreement 1121
+Rachel,Volume 131,Q5,200,0,1.0,6,False,2025-11-21,agreement 1121
+Alia,Volume 131,Q6,200,11,0.945,6,False,2025-11-21,agreement 1121
 Bridget,Volume 131,Q6,200,11,0.945,4,False,2025-11-21,agreement 1121
 Leah,Volume 131,Q6,200,3,0.985,4,False,2025-11-21,agreement 1121
-Rachel,Volume 131,Q6,200,3,0.985,5,False,2025-11-21,agreement 1121
-Alia,Volume 62,Q1,200,0,1.0,2,True,2025-01-15,115 agreement
-Bridget,Volume 62,Q1,200,0,1.0,2,True,2025-01-15,115 agreement
-Leah,Volume 62,Q1,200,0,1.0,2,True,2025-01-15,115 agreement
-Rachel,Volume 62,Q1,200,0,1.0,2,True,2025-01-15,115 agreement
-Alia,Volume 62,Q2,200,0,1.0,2,True,2025-01-15,115 agreement
-Bridget,Volume 62,Q2,200,0,1.0,2,True,2025-01-15,115 agreement
-Leah,Volume 62,Q2,200,0,1.0,2,True,2025-01-15,115 agreement
-Rachel,Volume 62,Q2,200,0,1.0,2,True,2025-01-15,115 agreement
-Alia,Volume 62,Q3,200,0,1.0,2,True,2025-01-15,115 agreement
-Bridget,Volume 62,Q3,200,0,1.0,2,True,2025-01-15,115 agreement
-Leah,Volume 62,Q3,200,0,1.0,2,True,2025-01-15,115 agreement
-Rachel,Volume 62,Q3,200,0,1.0,2,True,2025-01-15,115 agreement
-Alia,Volume 62,Q4,200,0,1.0,2,True,2025-01-15,115 agreement
-Bridget,Volume 62,Q4,200,0,1.0,2,True,2025-01-15,115 agreement
-Leah,Volume 62,Q4,200,0,1.0,2,True,2025-01-15,115 agreement
-Rachel,Volume 62,Q4,200,0,1.0,2,True,2025-01-15,115 agreement
-Alia,Volume 62,Q5,200,0,1.0,2,True,2025-01-15,115 agreement
-Bridget,Volume 62,Q5,200,0,1.0,2,True,2025-01-15,115 agreement
-Leah,Volume 62,Q5,200,0,1.0,2,True,2025-01-15,115 agreement
-Rachel,Volume 62,Q5,200,0,1.0,2,True,2025-01-15,115 agreement
-Alia,Volume 62,Q6,200,0,1.0,2,True,2025-01-15,115 agreement
-Bridget,Volume 62,Q6,200,0,1.0,2,True,2025-01-15,115 agreement
-Leah,Volume 62,Q6,200,0,1.0,2,True,2025-01-15,115 agreement
-Rachel,Volume 62,Q6,200,0,1.0,2,True,2025-01-15,115 agreement
-Alia,Volume 61,Q1,200,3,0.985,1,True,2025-01-04,104 agreement
-Bridget,Volume 61,Q1,200,3,0.985,1,True,2025-01-04,104 agreement
-Leah,Volume 61,Q1,200,7,0.965,1,True,2025-01-04,104 agreement
-Rachel,Volume 61,Q1,200,7,0.965,1,True,2025-01-04,104 agreement
-Alia,Volume 61,Q2,200,0,1.0,1,True,2025-01-04,104 agreement
-Bridget,Volume 61,Q2,200,0,1.0,1,True,2025-01-04,104 agreement
-Leah,Volume 61,Q2,200,0,1.0,1,True,2025-01-04,104 agreement
-Rachel,Volume 61,Q2,200,0,1.0,1,True,2025-01-04,104 agreement
-Alia,Volume 61,Q3,200,0,1.0,1,True,2025-01-04,104 agreement
-Bridget,Volume 61,Q3,200,0,1.0,1,True,2025-01-04,104 agreement
-Leah,Volume 61,Q3,200,0,1.0,1,True,2025-01-04,104 agreement
-Rachel,Volume 61,Q3,200,0,1.0,1,True,2025-01-04,104 agreement
-Alia,Volume 61,Q4,200,0,1.0,1,True,2025-01-04,104 agreement
-Bridget,Volume 61,Q4,200,0,1.0,1,True,2025-01-04,104 agreement
-Leah,Volume 61,Q4,200,0,1.0,1,True,2025-01-04,104 agreement
-Rachel,Volume 61,Q4,200,0,1.0,1,True,2025-01-04,104 agreement
-Alia,Volume 61,Q5,200,0,1.0,1,True,2025-01-04,104 agreement
-Bridget,Volume 61,Q5,200,0,1.0,1,True,2025-01-04,104 agreement
-Leah,Volume 61,Q5,200,0,1.0,1,True,2025-01-04,104 agreement
-Rachel,Volume 61,Q5,200,0,1.0,1,True,2025-01-04,104 agreement
-Alia,Volume 61,Q6,200,20,0.9,1,True,2025-01-04,104 agreement
-Bridget,Volume 61,Q6,200,20,0.9,1,True,2025-01-04,104 agreement
-Leah,Volume 61,Q6,200,14,0.93,1,True,2025-01-04,104 agreement
-Rachel,Volume 61,Q6,200,14,0.93,1,True,2025-01-04,104 agreement
-Alia,Volume 133,Q1,100,6,0.94,3,False,2025-09-22,922 agreement
-Rachel,Volume 133,Q1,41,1,0.975609756097561,3,False,2025-09-22,922 agreement
-Alia,Volume 133,Q2,100,0,1.0,3,False,2025-09-22,922 agreement
-Rachel,Volume 133,Q2,41,0,1.0,3,False,2025-09-22,922 agreement
-Alia,Volume 133,Q3,100,0,1.0,3,False,2025-09-22,922 agreement
-Rachel,Volume 133,Q3,41,0,1.0,3,False,2025-09-22,922 agreement
-Alia,Volume 133,Q4,100,0,1.0,3,False,2025-09-22,922 agreement
-Rachel,Volume 133,Q4,41,2,0.9512195121951219,3,False,2025-09-22,922 agreement
-Alia,Volume 133,Q5,100,0,1.0,3,False,2025-09-22,922 agreement
-Rachel,Volume 133,Q5,41,0,1.0,3,False,2025-09-22,922 agreement
-Alia,Volume 133,Q6,100,6,0.94,3,False,2025-09-22,922 agreement
-Rachel,Volume 133,Q6,41,2,0.9512195121951219,3,False,2025-09-22,922 agreement
-Alia,Volume 134 - Part 2,Q1,201,2,0.9900497512437811,0,False,2025-01-04,104 agreement
-Bridget,Volume 134 - Part 2,Q1,200,2,0.99,0,False,2025-01-04,104 agreement
-Leah,Volume 134 - Part 2,Q1,222,2,0.990990990990991,0,False,2025-01-04,104 agreement
-Rachel,Volume 134 - Part 2,Q1,201,0,1.0,0,False,2025-01-04,104 agreement
-Alia,Volume 134 - Part 2,Q2,201,0,1.0,0,False,2025-01-04,104 agreement
-Bridget,Volume 134 - Part 2,Q2,200,0,1.0,0,False,2025-01-04,104 agreement
-Leah,Volume 134 - Part 2,Q2,222,0,1.0,0,False,2025-01-04,104 agreement
-Rachel,Volume 134 - Part 2,Q2,201,0,1.0,0,False,2025-01-04,104 agreement
-Alia,Volume 134 - Part 2,Q3,201,0,1.0,0,False,2025-01-04,104 agreement
-Bridget,Volume 134 - Part 2,Q3,200,0,1.0,0,False,2025-01-04,104 agreement
-Leah,Volume 134 - Part 2,Q3,222,0,1.0,0,False,2025-01-04,104 agreement
-Rachel,Volume 134 - Part 2,Q3,201,0,1.0,0,False,2025-01-04,104 agreement
-Alia,Volume 134 - Part 2,Q4,201,0,1.0,0,False,2025-01-04,104 agreement
-Bridget,Volume 134 - Part 2,Q4,200,0,1.0,0,False,2025-01-04,104 agreement
-Leah,Volume 134 - Part 2,Q4,222,0,1.0,0,False,2025-01-04,104 agreement
-Rachel,Volume 134 - Part 2,Q4,201,0,1.0,0,False,2025-01-04,104 agreement
-Alia,Volume 134 - Part 2,Q5,201,0,1.0,0,False,2025-01-04,104 agreement
-Bridget,Volume 134 - Part 2,Q5,200,0,1.0,0,False,2025-01-04,104 agreement
-Leah,Volume 134 - Part 2,Q5,222,0,1.0,0,False,2025-01-04,104 agreement
-Rachel,Volume 134 - Part 2,Q5,201,0,1.0,0,False,2025-01-04,104 agreement
-Alia,Volume 134 - Part 2,Q6,201,1,0.9950248756218906,0,False,2025-01-04,104 agreement
-Bridget,Volume 134 - Part 2,Q6,200,1,0.995,0,False,2025-01-04,104 agreement
-Leah,Volume 134 - Part 2,Q6,222,1,0.9954954954954955,0,False,2025-01-04,104 agreement
-Rachel,Volume 134 - Part 2,Q6,201,0,1.0,0,False,2025-01-04,104 agreement
+Rachel,Volume 131,Q6,200,3,0.985,6,False,2025-11-21,agreement 1121
+Alia,Volume 62,Q1,200,0,1.0,4,True,2025-11-05,115 agreement
+Bridget,Volume 62,Q1,200,0,1.0,2,True,2025-11-05,115 agreement
+Leah,Volume 62,Q1,200,0,1.0,2,True,2025-11-05,115 agreement
+Rachel,Volume 62,Q1,200,0,1.0,4,True,2025-11-05,115 agreement
+Alia,Volume 62,Q2,200,0,1.0,4,True,2025-11-05,115 agreement
+Bridget,Volume 62,Q2,200,0,1.0,2,True,2025-11-05,115 agreement
+Leah,Volume 62,Q2,200,0,1.0,2,True,2025-11-05,115 agreement
+Rachel,Volume 62,Q2,200,0,1.0,4,True,2025-11-05,115 agreement
+Alia,Volume 62,Q3,200,0,1.0,4,True,2025-11-05,115 agreement
+Bridget,Volume 62,Q3,200,0,1.0,2,True,2025-11-05,115 agreement
+Leah,Volume 62,Q3,200,0,1.0,2,True,2025-11-05,115 agreement
+Rachel,Volume 62,Q3,200,0,1.0,4,True,2025-11-05,115 agreement
+Alia,Volume 62,Q4,200,0,1.0,4,True,2025-11-05,115 agreement
+Bridget,Volume 62,Q4,200,0,1.0,2,True,2025-11-05,115 agreement
+Leah,Volume 62,Q4,200,0,1.0,2,True,2025-11-05,115 agreement
+Rachel,Volume 62,Q4,200,0,1.0,4,True,2025-11-05,115 agreement
+Alia,Volume 62,Q5,200,0,1.0,4,True,2025-11-05,115 agreement
+Bridget,Volume 62,Q5,200,0,1.0,2,True,2025-11-05,115 agreement
+Leah,Volume 62,Q5,200,0,1.0,2,True,2025-11-05,115 agreement
+Rachel,Volume 62,Q5,200,0,1.0,4,True,2025-11-05,115 agreement
+Alia,Volume 62,Q6,200,0,1.0,4,True,2025-11-05,115 agreement
+Bridget,Volume 62,Q6,200,0,1.0,2,True,2025-11-05,115 agreement
+Leah,Volume 62,Q6,200,0,1.0,2,True,2025-11-05,115 agreement
+Rachel,Volume 62,Q6,200,0,1.0,4,True,2025-11-05,115 agreement
+Alia,Volume 61,Q1,200,3,0.985,2,True,2025-10-04,104 agreement
+Bridget,Volume 61,Q1,200,3,0.985,1,True,2025-10-04,104 agreement
+Leah,Volume 61,Q1,200,7,0.965,1,True,2025-10-04,104 agreement
+Rachel,Volume 61,Q1,200,7,0.965,2,True,2025-10-04,104 agreement
+Alia,Volume 61,Q2,200,0,1.0,2,True,2025-10-04,104 agreement
+Bridget,Volume 61,Q2,200,0,1.0,1,True,2025-10-04,104 agreement
+Leah,Volume 61,Q2,200,0,1.0,1,True,2025-10-04,104 agreement
+Rachel,Volume 61,Q2,200,0,1.0,2,True,2025-10-04,104 agreement
+Alia,Volume 61,Q3,200,0,1.0,2,True,2025-10-04,104 agreement
+Bridget,Volume 61,Q3,200,0,1.0,1,True,2025-10-04,104 agreement
+Leah,Volume 61,Q3,200,0,1.0,1,True,2025-10-04,104 agreement
+Rachel,Volume 61,Q3,200,0,1.0,2,True,2025-10-04,104 agreement
+Alia,Volume 61,Q4,200,0,1.0,2,True,2025-10-04,104 agreement
+Bridget,Volume 61,Q4,200,0,1.0,1,True,2025-10-04,104 agreement
+Leah,Volume 61,Q4,200,0,1.0,1,True,2025-10-04,104 agreement
+Rachel,Volume 61,Q4,200,0,1.0,2,True,2025-10-04,104 agreement
+Alia,Volume 61,Q5,200,0,1.0,2,True,2025-10-04,104 agreement
+Bridget,Volume 61,Q5,200,0,1.0,1,True,2025-10-04,104 agreement
+Leah,Volume 61,Q5,200,0,1.0,1,True,2025-10-04,104 agreement
+Rachel,Volume 61,Q5,200,0,1.0,2,True,2025-10-04,104 agreement
+Alia,Volume 61,Q6,200,20,0.9,2,True,2025-10-04,104 agreement
+Bridget,Volume 61,Q6,200,20,0.9,1,True,2025-10-04,104 agreement
+Leah,Volume 61,Q6,200,14,0.93,1,True,2025-10-04,104 agreement
+Rachel,Volume 61,Q6,200,14,0.93,2,True,2025-10-04,104 agreement
+Alia,Volume 133,Q1,100,6,0.94,1,False,2025-09-22,922 agreement
+Rachel,Volume 133,Q1,41,1,0.975609756097561,1,False,2025-09-22,922 agreement
+Alia,Volume 133,Q2,100,0,1.0,1,False,2025-09-22,922 agreement
+Rachel,Volume 133,Q2,41,0,1.0,1,False,2025-09-22,922 agreement
+Alia,Volume 133,Q3,100,0,1.0,1,False,2025-09-22,922 agreement
+Rachel,Volume 133,Q3,41,0,1.0,1,False,2025-09-22,922 agreement
+Alia,Volume 133,Q4,100,0,1.0,1,False,2025-09-22,922 agreement
+Rachel,Volume 133,Q4,41,2,0.9512195121951219,1,False,2025-09-22,922 agreement
+Alia,Volume 133,Q5,100,0,1.0,1,False,2025-09-22,922 agreement
+Rachel,Volume 133,Q5,41,0,1.0,1,False,2025-09-22,922 agreement
+Alia,Volume 133,Q6,100,6,0.94,1,False,2025-09-22,922 agreement
+Rachel,Volume 133,Q6,41,2,0.9512195121951219,1,False,2025-09-22,922 agreement
+Alia,Volume 134 - Part 2,Q1,201,2,0.9900497512437811,0,False,2025-04-10,104 agreement
+Bridget,Volume 134 - Part 2,Q1,200,2,0.99,0,False,2025-04-10,104 agreement
+Leah,Volume 134 - Part 2,Q1,222,2,0.990990990990991,0,False,2025-04-10,104 agreement
+Rachel,Volume 134 - Part 2,Q1,201,0,1.0,0,False,2025-04-10,104 agreement
+Alia,Volume 134 - Part 2,Q2,201,0,1.0,0,False,2025-04-10,104 agreement
+Bridget,Volume 134 - Part 2,Q2,200,0,1.0,0,False,2025-04-10,104 agreement
+Leah,Volume 134 - Part 2,Q2,222,0,1.0,0,False,2025-04-10,104 agreement
+Rachel,Volume 134 - Part 2,Q2,201,0,1.0,0,False,2025-04-10,104 agreement
+Alia,Volume 134 - Part 2,Q3,201,0,1.0,0,False,2025-04-10,104 agreement
+Bridget,Volume 134 - Part 2,Q3,200,0,1.0,0,False,2025-04-10,104 agreement
+Leah,Volume 134 - Part 2,Q3,222,0,1.0,0,False,2025-04-10,104 agreement
+Rachel,Volume 134 - Part 2,Q3,201,0,1.0,0,False,2025-04-10,104 agreement
+Alia,Volume 134 - Part 2,Q4,201,0,1.0,0,False,2025-04-10,104 agreement
+Bridget,Volume 134 - Part 2,Q4,200,0,1.0,0,False,2025-04-10,104 agreement
+Leah,Volume 134 - Part 2,Q4,222,0,1.0,0,False,2025-04-10,104 agreement
+Rachel,Volume 134 - Part 2,Q4,201,0,1.0,0,False,2025-04-10,104 agreement
+Alia,Volume 134 - Part 2,Q5,201,0,1.0,0,False,2025-04-10,104 agreement
+Bridget,Volume 134 - Part 2,Q5,200,0,1.0,0,False,2025-04-10,104 agreement
+Leah,Volume 134 - Part 2,Q5,222,0,1.0,0,False,2025-04-10,104 agreement
+Rachel,Volume 134 - Part 2,Q5,201,0,1.0,0,False,2025-04-10,104 agreement
+Alia,Volume 134 - Part 2,Q6,201,1,0.9950248756218906,0,False,2025-04-10,104 agreement
+Bridget,Volume 134 - Part 2,Q6,200,1,0.995,0,False,2025-04-10,104 agreement
+Leah,Volume 134 - Part 2,Q6,222,1,0.9954954954954955,0,False,2025-04-10,104 agreement
+Rachel,Volume 134 - Part 2,Q6,201,0,1.0,0,False,2025-04-10,104 agreement

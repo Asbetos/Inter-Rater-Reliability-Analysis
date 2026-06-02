@@ -44,6 +44,7 @@ import drive_walk
 import number_coded
 import parse_agreement_sheet
 import pick_agreement_sheet
+import volume_ordering
 import volume_whitelist
 
 
@@ -123,7 +124,10 @@ def process_volume(
                 f"reason: {pick_result['manual_review_reason']}"
             )
 
-    chosen_date = _resolve_chosen_date(chosen_sheet, mtime)
+    # Prefer the team's authoritative date over the heuristic.
+    chosen_date = volume_ordering.authoritative_date_for(canonical_label)
+    if chosen_date is None:
+        chosen_date = _resolve_chosen_date(chosen_sheet, mtime)
 
     # Read booleans + assignments (with fallback to indicator-column derivation)
     agreement_data = agreement_booleans.read(wb, chosen_sheet)
