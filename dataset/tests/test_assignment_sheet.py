@@ -181,3 +181,111 @@ def test_empty_assignment_sheet_returns_empty(tmp_path):
     wb2 = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
     result = assignment_sheet.parse(wb2)
     assert result == {}
+
+
+# ---------- Fallback: derive assignment from agreement-sheet indicator columns ----------
+
+def test_fallback_parses_from_indicator_columns(tmp_path):
+    """When no Assignment sheet exists, build coder->orders from per-row indicators."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "109 agreement"
+    ws.append([
+        "order.num", "num.coders",
+        "q1.agree", "q2.agree", "q3.agree", "q4.agree", "q5.agree", "q6.agree",
+        "q1.rest.Rachel", "q1.rest.Alia",
+        "Rachel", "Alia",
+    ])
+    # Row 1: both Rachel and Alia
+    ws.append([1, 2, True, True, True, True, True, True, "ok", "ok", "1", "1"])
+    # Row 2: only Rachel
+    ws.append([2, 1, True, True, True, True, True, True, "ok", None, "1", None])
+    # Row 3: only Alia
+    ws.append([3, 1, True, True, True, True, True, True, None, "ok", None, "1"])
+    fpath = tmp_path / "no_assignment.xlsx"
+    wb.save(fpath)
+    wb2 = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    result = assignment_sheet.parse_from_agreement_indicators(wb2, "109 agreement")
+    assert result["Rachel"] == {1, 2}
+    assert result["Alia"] == {1, 3}
+
+
+def test_fallback_ignores_non_coder_indicator_columns(tmp_path):
+    """Bare columns named exactly after a known coder are indicators; other
+    bare columns must be ignored even if they have '1' values."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "104 agreement"
+    ws.append([
+        "order.num", "num.coders",
+        "q1.agree", "q2.agree", "q3.agree", "q4.agree", "q5.agree", "q6.agree",
+        "Leah", "Bridget", "extra_column", "AnotherUnknown",
+    ])
+    ws.append([1, 2, True, True, True, True, True, True, "1", "1", "1", "1"])
+    fpath = tmp_path / "stray_cols.xlsx"
+    wb.save(fpath)
+    wb2 = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    result = assignment_sheet.parse_from_agreement_indicators(wb2, "104 agreement")
+    assert set(result.keys()) == {"Leah", "Bridget"}
+    assert "extra_column" not in result
+    assert "AnotherUnknown" not in result
+
+
+def test_fallback_skips_q1_rest_columns(tmp_path):
+    """'q1.rest.Rachel' must NOT be treated as a Rachel indicator column."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "33 agreement"
+    ws.append([
+        "order.num", "num.coders",
+        "q1.agree", "q2.agree", "q3.agree", "q4.agree", "q5.agree", "q6.agree",
+        "q1.rest.Rachel", "q1.rest.Alia",   # NOT indicators
+    ])
+    # Even though q1.rest.Rachel is "ok", we shouldn't treat it as the
+    # Rachel indicator - there's no bare "Rachel" column here.
+    ws.append([1, 2, True, True, True, True, True, True, "ok", "ok"])
+    fpath = tmp_path / "rest_only.xlsx"
+    wb.save(fpath)
+    wb2 = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    result = assignment_sheet.parse_from_agreement_indicators(wb2, "33 agreement")
+    # No bare indicator columns => empty result
+    assert result == {}
+
+
+def test_fallback_handles_blank_and_float_indicators(tmp_path):
+    """Indicators can be '1', 1, 1.0, or any non-blank truthy value;
+    blank/None means the coder did NOT code that row."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "agreement"
+    ws.append([
+        "order.num", "num.coders",
+        "q1.agree", "q2.agree", "q3.agree", "q4.agree", "q5.agree", "q6.agree",
+        "Leah", "Alia",
+    ])
+    ws.append([1, 2, True, True, True, True, True, True, 1.0, 1])   # numeric indicators
+    ws.append([2, 2, True, True, True, True, True, True, "1", "1"]) # string
+    ws.append([3, 1, True, True, True, True, True, True, "1", None])
+    ws.append([4, 1, True, True, True, True, True, True, "", "1"])  # empty-string = not participating
+    fpath = tmp_path / "varied.xlsx"
+    wb.save(fpath)
+    wb2 = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    result = assignment_sheet.parse_from_agreement_indicators(wb2, "agreement")
+    assert result["Leah"] == {1, 2, 3}
+    assert result["Alia"] == {1, 2, 4}
+
+
+def test_fallback_returns_empty_when_no_indicator_columns(tmp_path):
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "104 agreement"
+    ws.append([
+        "order.num", "num.coders",
+        "q1.agree", "q2.agree", "q3.agree", "q4.agree", "q5.agree", "q6.agree",
+    ])
+    ws.append([1, 2, True, True, True, True, True, True])
+    fpath = tmp_path / "bare.xlsx"
+    wb.save(fpath)
+    wb2 = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    result = assignment_sheet.parse_from_agreement_indicators(wb2, "104 agreement")
+    assert result == {}

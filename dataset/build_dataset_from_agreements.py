@@ -125,9 +125,15 @@ def process_volume(
 
     chosen_date = _resolve_chosen_date(chosen_sheet, mtime)
 
-    # Read booleans + assignments
+    # Read booleans + assignments (with fallback to indicator-column derivation)
     agreement_data = agreement_booleans.read(wb, chosen_sheet)
     assignments = assignment_sheet.parse(wb)
+    if not assignments:
+        # No Assignment sheet — derive from the chosen agreement sheet's
+        # bare coder indicator columns
+        assignments = assignment_sheet.parse_from_agreement_indicators(
+            wb, chosen_sheet,
+        )
     coders_present = sorted(assignments.keys())
 
     per_coder_rows: List[Dict] = []

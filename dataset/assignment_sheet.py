@@ -115,3 +115,57 @@ def parse(wb: openpyxl.Workbook) -> Dict[str, Set[int]]:
     if pairs:
         return _parse_schema_b(ws, pairs)
     return _parse_schema_a(ws)
+
+
+def parse_from_agreement_indicators(
+    wb: openpyxl.Workbook, sheet_name: str
+) -> Dict[str, Set[int]]:
+    """Derive {coder: set[order_num]} from an agreement sheet's bare coder
+    indicator columns (e.g. a column named exactly 'Leah' with value '1' on
+    rows Leah coded).
+
+    Used as a fallback when the workbook has no Assignment sheet. Only
+    bare-named coder columns (case-sensitive match against KNOWN_CODERS)
+    are treated as indicators; 'q1.rest.<coder>' columns are NOT.
+
+    Returns {} if the sheet has no recognizable indicator columns.
+    """
+    ws = wb[sheet_name]
+    header = list(next(ws.iter_rows(values_only=True), []))
+    # Identify bare indicator columns: header exactly equals a known coder name.
+    # (Strict case-sensitive match to avoid catching 'q1.rest.Leah' etc.)
+    indicator_idx: Dict[str, int] = {}
+    for i, h in enumerate(header):
+        if isinstance(h, str) and h.strip() in KNOWN_CODERS:
+            indicator_idx[h.strip()] = i
+    if not indicator_idx:
+        return {}
+    # Find order.num column
+    order_idx = None
+    for i, h in enumerate(header):
+        if isinstance(h, str) and h.strip().lower() == "order.num":
+            order_idx = i
+            break
+    if order_idx is None:
+        return {}
+    result: Dict[str, Set[int]] = {c: set() for c in indicator_idx}
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or order_idx >= len(row) or row[order_idx] is None:
+            continue
+        try:
+            order = int(row[order_idx])
+        except (TypeError, ValueError):
+            continue
+        for coder, ci in indicator_idx.items():
+            if ci >= len(row):
+                continue
+            v = row[ci]
+            if v is None:
+                continue
+            # Truthy = non-blank string or any non-zero numeric
+            if isinstance(v, str):
+                if v.strip() == "":
+                    continue
+            result[coder].add(order)
+    # Prune coders with no rows (header was present but no actual indicators set)
+    return {c: orders for c, orders in result.items() if orders}
