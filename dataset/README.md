@@ -183,3 +183,109 @@ Swap `irr_leave_one_out` for `irr_mean_pairwise_kappa` to fit Variant B; load `i
 
 - Spec: `/home/G39248410/docs/superpowers/specs/2026-05-26-irr-dataset-design.md`
 - Plan: `/home/G39248410/docs/superpowers/plans/2026-05-26-irr-dataset.md`
+
+---
+
+## v2 dataset — agreement-boolean methodology
+
+A parallel builder (`build_dataset_from_agreements.py`) produces an IRR dataset using a stricter, simpler methodology than v1:
+
+- **Inputs:** only the boolean `q1.agree` … `q7.agree` columns from each volume's chosen agreement sheet, plus the `Assignment` sheet for coder-pair attribution.
+- **Volumes:** restricted to a 20-volume whitelist (see `volume_whitelist.VOLUME_WHITELIST_SUBSTRINGS`).
+- **Sheet selection:** 5 volumes have hardcoded sheet overrides (Vol 61 → `"104 agreement"`, Vol 62 → `"115 agreement"`, Vol 63 → `"104 agreement"`, Vol 134 - Part I → `"109 agreement"`, Vol 134 - Part 2 → `"104 agreement"`). All others fall back to the same earliest-by-date heuristic v1 uses.
+- **Metric:** raw % agreement per (coder, volume, question) — no chance-correction, no Cohen's κ. An agreement-sheet row contributes a disagreement when its `qN.agree` value is `False`.
+- **Coder attribution:** each disagreement is attributed to whichever coder(s) the Assignment sheet says were assigned to that `order.num`.
+- **Fallback for missing Assignment sheets:** if a workbook has no Assignment sheet (e.g., Volume 134 - Part I), the builder derives the coder→order mapping from the agreement sheet's bare coder-indicator columns (a column named exactly `"Leah"`, `"Alia"`, etc., with `"1"` on rows that coder coded).
+- **Dual-schema Assignment parser:** handles both the `Coder | Rows ("1-400") | #Count` layout (Vol 109 and similar) and the `Coder | start | stop | start | stop | ...` layout with repeated `(start, stop)` pairs for multiple disjoint ranges per coder (Vol 134 - Part 2).
+
+### v2 outputs
+
+| File | Contents |
+|---|---|
+| `outputs/irr_dataset_v2_per_coder.csv` (+ `.parquet`) | One row per (coder, volume, question) |
+| `outputs/irr_dataset_v2_per_pair.csv` (+ `.parquet`) | One row per (coder_a, coder_b, volume, question) — only pairs with row overlap |
+| `outputs/irr_dataset_v2_metadata.csv` | Per-volume audit trail (chosen_sheet, chosen_date, drive_mtime, n_orders_in_agreement_sheet, coders_in_assignment) |
+| `outputs/irr_dataset_v2_errors.csv` | (Only present if any volume errored) |
+
+### v2 vs v1 — when to use which
+
+- **v2** is closer to what the team intended per the 2026-05-28 spec: simple raw-agreement-rate counts from the official precomputed `qN.agree` booleans.
+- **v1** (per-coder-cells methodology) is retained for comparison; it computes Cohen's κ, Krippendorff α, and leave-one-out variants that v2 cannot because v2 only sees booleans.
+
+### Running v2
+
+```bash
+/home/G39248410/citizen_voice/venv/bin/python -m dataset.build_dataset_from_agreements \
+    --drive-folder-id 1SJmgLW_6NjGLwZOT873LxDinFSwVqGRA \
+    --credentials /home/G39248410/.config/citizen_voice_irr/credentials.json \
+    --output-dir outputs/
+```
+
+CLI flags:
+- `--drive-folder-id` (required) — the Google Drive folder ID containing the volume workbooks
+- `--credentials` (required) — path to the OAuth `credentials.json`
+- `--token` (default `~/.config/citizen_voice_irr/token.json`) — path to the cached OAuth token
+- `--output-dir` (default `outputs`) — directory to write the CSV/Parquet files
+
+### v2 schema — per-coder
+
+| Column | Type | Meaning |
+|---|---|---|
+| `coder` | str | One of: Alia, Brian, Bridget, Leah, Rachel |
+| `volume` | str | Canonical label (e.g., `Volume 91`, `Volume 134 - Part 2`) |
+| `question` | str | `Q1`..`Q7` (some volumes only have Q1-Q6) |
+| `n_assigned_orders` | int | Rows in the agreement sheet that this coder was assigned to AND that have a `qN.agree` value for this Q |
+| `n_disagreements` | int | Of those, count where `qN.agree == False` |
+| `pct_agreement` | float | `(n_assigned_orders - n_disagreements) / n_assigned_orders` |
+| `number_coded_prior` | int | Count of OTHER volumes this coder participated in whose `agreement_sheet_date` is strictly earlier (tie-broken by volume label) |
+| `agreement_sheet_date` | date | The earliest-agreement-sheet date used for this volume |
+| `is_legacy_volume` | bool | `True` for volumes ≤ 63 (Vol 61, Vol 62 in this dataset; Vol 63 not in whitelist) |
+| `chosen_sheet` | str | Audit: which agreement sheet name was actually read |
+
+### v2 schema — per-pair
+
+| Column | Type | Meaning |
+|---|---|---|
+| `coder_a`, `coder_b` | str | Pair, alphabetized |
+| `volume` | str | as above |
+| `question` | str | as above |
+| `n_overlap_orders` | int | Orders assigned to BOTH coders (intersection) |
+| `n_disagreements` | int | Of those, count where `qN.agree == False` |
+| `pct_agreement` | float | `(n_overlap - n_disagreements) / n_overlap` |
+| `number_coded_prior_a`, `number_coded_prior_b` | int | Per-coder experience counts |
+| `agreement_sheet_date`, `is_legacy_volume`, `chosen_sheet` | as above |
+
+### Running the regression on v2 data
+
+```python
+import pandas as pd
+import statsmodels.formula.api as smf
+import numpy as np
+
+df = pd.read_csv("outputs/irr_dataset_v2_per_coder.csv")
+
+# Focus on Q1 (largest N, binary)
+df_q1 = df[df.question == "Q1"].dropna(subset=["pct_agreement"])
+
+# Linear experience term
+model = smf.ols(
+    "pct_agreement ~ C(coder) + C(volume) + number_coded_prior",
+    data=df_q1,
+).fit()
+print(model.summary())
+
+# Non-linear (log) experience term
+model_log = smf.ols(
+    "pct_agreement ~ C(coder) + C(volume) + np.log1p(number_coded_prior)",
+    data=df_q1,
+).fit()
+print(model_log.summary())
+```
+
+### v2 known limitations
+
+- **Volume 133 has zero per-pair rows.** Its Assignment sheet gives Alia 100 orders and Rachel 41 orders with no overlap between their assigned ranges, so no pair comparison is possible. Per-coder rows are still emitted for both.
+- **`number_coded_prior` has minor inversions** for volumes that share an `agreement_sheet_date`. The sort is `(date, volume_label)` so ties are broken alphabetically by label, not by volume number. Inversions are small (1–2 positions) and only affect coders with multiple same-date volumes.
+- **No chance correction.** `pct_agreement` is uncorrected — a question where 95% of answers are "no" trivially scores 0.95 even with random coders. To get Cohen's κ you need v1.
+- **Q2–Q5 are conditional on Q1 = yes** in the underlying coding rubric, so their `n_assigned_orders` per (coder, volume) is much smaller than Q1/Q6/Q7. Regression on Q2–Q5 alone will be underpowered.
+- **`q1.rest.*` columns are NOT used** in v2's IRR computation — they would only confirm Q1-level participation, but the bare coder indicator columns already serve that purpose for the fallback.
