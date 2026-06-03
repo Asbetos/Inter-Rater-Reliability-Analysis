@@ -45,6 +45,7 @@ import number_coded
 import parse_agreement_sheet
 import pick_agreement_sheet
 import volume_ordering
+import volume_overrides
 import volume_whitelist
 
 
@@ -138,6 +139,39 @@ def process_volume(
         assignments = assignment_sheet.parse_from_agreement_indicators(
             wb, chosen_sheet,
         )
+
+    # Apply manual assignment override (e.g. Vol 133 where the parsed
+    # Assignment sheet under-reported coverage)
+    manual_assignments = volume_overrides.manual_assignment_for(canonical_label)
+    if manual_assignments:
+        assignments = manual_assignments
+
+    # Apply composite-sheet splice (e.g. Vol 114 where Brian/Rachel's cross-check
+    # was completed on a later date than the other coders)
+    composite_cfg = volume_overrides.composite_sheet_for(canonical_label)
+    if composite_cfg:
+        alt_sheet_name = composite_cfg["alternate_sheet"]
+        alt_coders = composite_cfg["use_alternate_when_any_coder_in"]
+        # Resolve the alternate sheet's actual name in this workbook
+        resolved_alt = _find_sheet(wb, alt_sheet_name)
+        if resolved_alt is None:
+            raise RuntimeError(
+                f"composite override for {canonical_label!r}: alternate sheet "
+                f"{alt_sheet_name!r} not found in workbook. "
+                f"Available: {wb.sheetnames}"
+            )
+        alt_data = agreement_booleans.read(wb, resolved_alt)
+        # For each order, if any of the alternate-coders is assigned, replace
+        # that row's qN.agree values with the alternate sheet's values.
+        for order in list(agreement_data.keys()):
+            coders_on_row = {
+                c for c, orders in assignments.items() if order in orders
+            }
+            if coders_on_row & alt_coders:
+                if order in alt_data:
+                    agreement_data[order] = alt_data[order]
+                # If alternate sheet doesn't have this row, keep primary's values
+
     coders_present = sorted(assignments.keys())
 
     per_coder_rows: List[Dict] = []
