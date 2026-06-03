@@ -8,10 +8,17 @@ Participation = Tuple[str, str, date]  # (volume_id, coder, agreement_sheet_date
 
 
 def compute(participations: List[Participation]) -> Dict[Tuple[str, str], int]:
-    """For each (volume, coder), return how many earlier volumes the coder participated in.
+    """For each (volume, coder), return the count of OTHER volumes the coder
+    participated in whose agreement_sheet_date is STRICTLY earlier.
 
-    Ordering: by `agreement_sheet_date` ascending, with ties broken by
-    lexicographic `volume_id` ascending.
+    Volumes tied on date receive the SAME number_coded_prior (competition
+    ranking); the next non-tied volume skips ahead by the size of the tied
+    group. This generalizes to any number of tied volumes.
+
+    Examples:
+        Three volumes V1, V2, V3 dated 2025-01-01, 2025-01-01, 2025-02-01:
+          V1 -> 0, V2 -> 0, V3 -> 2  (V3 skips rank 1 because two volumes
+          shared rank 0)
     """
     # Group by coder
     by_coder: Dict[str, List[Tuple[str, date]]] = {}
@@ -20,8 +27,8 @@ def compute(participations: List[Participation]) -> Dict[Tuple[str, str], int]:
 
     result: Dict[Tuple[str, str], int] = {}
     for coder, entries in by_coder.items():
-        # Sort by (date, volume_id) ascending
-        ordered = sorted(entries, key=lambda x: (x[1], x[0]))
-        for idx, (vol, _) in enumerate(ordered):
-            result[(vol, coder)] = idx
+        for vol, d in entries:
+            # Count volumes for this coder whose date is STRICTLY less than d.
+            n_strictly_earlier = sum(1 for _, d2 in entries if d2 < d)
+            result[(vol, coder)] = n_strictly_earlier
     return result
