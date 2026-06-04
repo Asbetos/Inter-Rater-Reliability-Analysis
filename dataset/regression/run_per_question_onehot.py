@@ -437,8 +437,8 @@ def render_advisor_report(q, model, sub_df, coef_df, var_df, vif_df) -> str:
         f"{'Adequate but not generous.' if df_resid > 20 else 'Limited statistical power.' if df_resid > 5 else 'Very limited — interpret individual coefficients with extreme caution.'}"
     )
     lines.append(
-        "- **No-intercept R² is uncentered:** do not compare these R² values to centered R² from "
-        "intercept-bearing OLS models. Use the F p-value or the variance decomposition to gauge fit."
+        "- **R² is centered standard R² here** (the 5 coder dummies sum to a constant, giving an "
+        "implicit intercept). Adjusted R² is the more honest fit indicator given k ≈ N/2."
     )
     lines.append(
         "- **Multicollinearity expected:** the 5 coder dummies sum to 2 per row (a structural "

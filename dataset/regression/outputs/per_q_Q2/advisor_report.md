@@ -161,7 +161,7 @@ VIF measured on the no-intercept design matrix. Note: in no-intercept models, ab
 ## 7. Caveats
 
 - **Sample size:** N = 65 with k = 29 predictors leaves 35 residual df. Adequate but not generous.
-- **No-intercept R² is uncentered:** do not compare these R² values to centered R² from intercept-bearing OLS models. Use the F p-value or the variance decomposition to gauge fit.
+- **R² is centered standard R² here** (the 5 coder dummies sum to a constant, giving an implicit intercept). Adjusted R² is the more honest fit indicator given k ≈ N/2.
 - **Multicollinearity expected:** the 5 coder dummies sum to 2 per row (a structural constraint), and NCP values are correlated with the corresponding coder indicators by construction (NCP > 0 ⇒ coder in pair). Some VIF inflation is design-induced, not a bug.
 - **Target ceiling effect:** `pct_agreement` is heavily skewed toward 1.0. Effects are compressed by the bounded scale.
 - **Q2 is conditional on Q1:** Rows where Q1 disagreed feed into this analysis; downstream agreement may inherit Q1 disagreement structure.
