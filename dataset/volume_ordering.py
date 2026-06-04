@@ -20,6 +20,7 @@ AUTHORITATIVE_DATES: Dict[str, date] = {
     "Volume 134 - Part 2": date(2025, 4, 10),
     "Volume 133":          date(2025, 9, 22),
     "Volume 61":           date(2025, 10, 4),
+    "Volume 63":           date(2025, 10, 4),
     "Volume 134 - Part I": date(2025, 10, 9),
     "Volume 62":           date(2025, 11, 5),
     "Volume 132":          date(2025, 11, 13),

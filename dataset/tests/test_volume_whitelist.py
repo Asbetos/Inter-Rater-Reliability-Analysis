@@ -6,7 +6,7 @@ import volume_whitelist as vw
 
 
 def test_whitelist_count():
-    assert len(vw.VOLUME_WHITELIST_SUBSTRINGS) == 20
+    assert len(vw.VOLUME_WHITELIST_SUBSTRINGS) == 21
 
 
 def test_match_volume_91_filename():
@@ -25,6 +25,10 @@ def test_match_volume_61_filename():
     assert vw.match_volume("2025-09-14 First Coding Check: Volume 61") == "Volume 61"
 
 
+def test_match_volume_63_filename():
+    assert vw.match_volume("2025-09-05 First Coding Check : Volume 63") == "Volume 63"
+
+
 def test_match_excludes_non_whitelisted_volume():
     assert vw.match_volume("2026-04-13 First Coding Check _ Volume 80") is None
 
@@ -35,6 +39,10 @@ def test_overrides_for_61():
 
 def test_overrides_for_62():
     assert vw.override_sheet_for("2025-09-14 First Coding Check: Volume 62") == "115 agreement"
+
+
+def test_overrides_for_63():
+    assert vw.override_sheet_for("2025-09-05 First Coding Check : Volume 63") == "104 agreement"
 
 
 def test_overrides_for_134_part_I():

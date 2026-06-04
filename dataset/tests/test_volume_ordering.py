@@ -7,8 +7,8 @@ from datetime import date
 import volume_ordering as vo
 
 
-def test_table_has_20_entries():
-    assert len(vo.AUTHORITATIVE_DATES) == 20
+def test_table_has_21_entries():
+    assert len(vo.AUTHORITATIVE_DATES) == 21
 
 
 def test_134_part_2_date():
@@ -17,6 +17,15 @@ def test_134_part_2_date():
 
 def test_vol_61_date():
     assert vo.authoritative_date_for("Volume 61") == date(2025, 10, 4)
+
+
+def test_vol_63_date():
+    assert vo.authoritative_date_for("Volume 63") == date(2025, 10, 4)
+
+
+def test_vol_61_and_63_share_date():
+    """Same authoritative date -> competition ranking will tie them."""
+    assert vo.authoritative_date_for("Volume 61") == vo.authoritative_date_for("Volume 63")
 
 
 def test_vol_62_date():
@@ -42,6 +51,7 @@ def test_chronological_order_matches_user_table():
         "Volume 134 - Part 2",
         "Volume 133",
         "Volume 61",
+        "Volume 63",                 # same date as Vol 61; alphabetic tie-break
         "Volume 134 - Part I",
         "Volume 62",
         "Volume 132",
