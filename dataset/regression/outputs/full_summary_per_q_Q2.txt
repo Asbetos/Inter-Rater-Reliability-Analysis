@@ -1,0 +1,55 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:          pct_agreement   R-squared:                       0.785
+Model:                            OLS   Adj. R-squared:                  0.618
+Method:                 Least Squares   F-statistic:                     4.693
+Date:                Thu, 04 Jun 2026   Prob (F-statistic):           1.05e-05
+Time:                        00:14:54   Log-Likelihood:                 195.57
+No. Observations:                  65   AIC:                            -333.1
+Df Residuals:                      36   BIC:                            -270.1
+Df Model:                          28                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------
+Intercept                            0.9217      0.100      9.229      0.000       0.719       1.124
+C(coder_a)[T.Brian]                  0.0140      0.047      0.297      0.768      -0.082       0.110
+C(coder_a)[T.Bridget]               -0.0026      0.010     -0.255      0.800      -0.023       0.018
+C(coder_a)[T.Leah]                   0.0025      0.016      0.157      0.876      -0.030       0.035
+C(coder_b)[T.Bridget]               -0.0116      0.022     -0.534      0.597      -0.056       0.033
+C(coder_b)[T.Leah]                  -0.0123      0.019     -0.660      0.514      -0.050       0.025
+C(coder_b)[T.Rachel]                -0.0107      0.029     -0.368      0.715      -0.070       0.048
+C(volume)[T.Volume 114]             -0.0311      0.015     -2.118      0.041      -0.061      -0.001
+C(volume)[T.Volume 119]             -0.0303      0.022     -1.377      0.177      -0.075       0.014
+C(volume)[T.Volume 120]              0.0151      0.049      0.308      0.760      -0.084       0.115
+C(volume)[T.Volume 122]              0.0184      0.049      0.376      0.709      -0.081       0.118
+C(volume)[T.Volume 124]             -0.0007      0.015     -0.044      0.965      -0.031       0.029
+C(volume)[T.Volume 126]             -0.0153      0.022     -0.695      0.491      -0.060       0.029
+C(volume)[T.Volume 127]              0.0239      0.031      0.761      0.452      -0.040       0.087
+C(volume)[T.Volume 130]              0.0492      0.049      0.997      0.326      -0.051       0.149
+C(volume)[T.Volume 131]              0.0530      0.051      1.031      0.309      -0.051       0.157
+C(volume)[T.Volume 132]              0.0578      0.060      0.958      0.344      -0.065       0.180
+C(volume)[T.Volume 133]              0.0854      0.104      0.823      0.416      -0.125       0.296
+C(volume)[T.Volume 134 - Part 2]     0.0901      0.109      0.829      0.412      -0.130       0.310
+C(volume)[T.Volume 134 - Part I]     0.0648      0.081      0.802      0.428      -0.099       0.229
+C(volume)[T.Volume 61]               0.0229      0.030      0.760      0.452      -0.038       0.084
+C(volume)[T.Volume 62]               0.0109      0.011      0.983      0.332      -0.012       0.033
+C(volume)[T.Volume 63]               0.0229      0.030      0.760      0.452      -0.038       0.084
+C(volume)[T.Volume 91]              -0.0238      0.039     -0.616      0.542      -0.102       0.055
+C(volume)[T.Volume 93]              -0.0266      0.030     -0.879      0.385      -0.088       0.035
+C(volume)[T.Volume 94]              -0.0564      0.048     -1.178      0.246      -0.153       0.041
+C(volume)[T.Volume 95]              -0.0143      0.057     -0.252      0.803      -0.129       0.101
+number_coded_prior_a                 0.0021      0.008      0.277      0.783      -0.013       0.017
+number_coded_prior_b                 0.0027      0.004      0.729      0.471      -0.005       0.010
+is_legacy_volume                     0.0567      0.063      0.900      0.374      -0.071       0.184
+==============================================================================
+Omnibus:                        0.778   Durbin-Watson:                   2.145
+Prob(Omnibus):                  0.678   Jarque-Bera (JB):                0.257
+Skew:                           0.046   Prob(JB):                        0.880
+Kurtosis:                       3.293   Cond. No.                     3.41e+17
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 1.18e-31. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
