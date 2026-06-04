@@ -1,61 +1,39 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:          pct_agreement   R-squared:                       0.381
-Model:                            OLS   Adj. R-squared:                  0.328
-Method:                 Least Squares   F-statistic:                     7.227
-Date:                Thu, 04 Jun 2026   Prob (F-statistic):           3.41e-25
-Time:                        00:14:54   Log-Likelihood:                 261.63
-No. Observations:                 435   AIC:                            -453.3
-Df Residuals:                     400   BIC:                            -310.6
-Df Model:                          34                                         
+Dep. Variable:          pct_agreement   R-squared:                       0.194
+Model:                            OLS   Adj. R-squared:                  0.165
+Method:                 Least Squares   F-statistic:                     6.716
+Date:                Thu, 04 Jun 2026   Prob (F-statistic):           4.89e-13
+Time:                        00:33:57   Log-Likelihood:                 204.32
+No. Observations:                 435   AIC:                            -376.6
+Df Residuals:                     419   BIC:                            -311.4
+Df Model:                          15                                         
 Covariance Type:            nonrobust                                         
-====================================================================================================
-                                       coef    std err          t      P>|t|      [0.025      0.975]
-----------------------------------------------------------------------------------------------------
-Intercept                            0.7044      0.342      2.059      0.040       0.032       1.377
-C(coder_a)[T.Brian]                  0.1167      0.161      0.727      0.468      -0.199       0.433
-C(coder_a)[T.Bridget]               -0.0012      0.035     -0.033      0.974      -0.070       0.068
-C(coder_a)[T.Leah]                   0.0024      0.055      0.044      0.965      -0.106       0.111
-C(coder_b)[T.Bridget]               -0.2365      0.074     -3.195      0.002      -0.382      -0.091
-C(coder_b)[T.Leah]                  -0.1855      0.063     -2.952      0.003      -0.309      -0.062
-C(coder_b)[T.Rachel]                -0.2115      0.100     -2.113      0.035      -0.408      -0.015
-C(volume)[T.Volume 114]             -0.2423      0.049     -4.964      0.000      -0.338      -0.146
-C(volume)[T.Volume 119]             -0.2618      0.074     -3.522      0.000      -0.408      -0.116
-C(volume)[T.Volume 120]              0.0994      0.168      0.593      0.554      -0.230       0.429
-C(volume)[T.Volume 122]              0.0956      0.168      0.570      0.569      -0.234       0.425
-C(volume)[T.Volume 124]             -0.0567      0.049     -1.145      0.253      -0.154       0.041
-C(volume)[T.Volume 126]              0.0583      0.075      0.782      0.435      -0.088       0.205
-C(volume)[T.Volume 127]              0.0895      0.107      0.838      0.403      -0.120       0.299
-C(volume)[T.Volume 130]              0.1531      0.169      0.906      0.366      -0.179       0.485
-C(volume)[T.Volume 131]              0.2480      0.177      1.405      0.161      -0.099       0.595
-C(volume)[T.Volume 132]              0.2684      0.207      1.295      0.196      -0.139       0.676
-C(volume)[T.Volume 133]              0.4154      0.356      1.166      0.244      -0.285       1.116
-C(volume)[T.Volume 134 - Part 2]     0.4448      0.373      1.192      0.234      -0.289       1.178
-C(volume)[T.Volume 134 - Part I]     0.3015      0.278      1.083      0.280      -0.246       0.849
-C(volume)[T.Volume 61]               0.1089      0.104      1.050      0.294      -0.095       0.313
-C(volume)[T.Volume 62]               0.0473      0.039      1.221      0.223      -0.029       0.123
-C(volume)[T.Volume 63]               0.1227      0.104      1.183      0.237      -0.081       0.327
-C(volume)[T.Volume 91]              -0.1179      0.132     -0.891      0.373      -0.378       0.142
-C(volume)[T.Volume 93]              -0.1084      0.103     -1.052      0.293      -0.311       0.094
-C(volume)[T.Volume 94]              -0.1601      0.164     -0.978      0.329      -0.482       0.162
-C(volume)[T.Volume 95]              -0.1632      0.194     -0.840      0.401      -0.545       0.219
-C(question)[T.Q2]                    0.0844      0.024      3.481      0.001       0.037       0.132
-C(question)[T.Q3]                    0.0858      0.024      3.536      0.000       0.038       0.133
-C(question)[T.Q4]                    0.0814      0.024      3.356      0.001       0.034       0.129
-C(question)[T.Q5]                    0.0828      0.024      3.414      0.001       0.035       0.131
-C(question)[T.Q6]                   -0.0185      0.024     -0.763      0.446      -0.066       0.029
-C(question)[T.Q7]                   -0.0363      0.027     -1.333      0.183      -0.090       0.017
-number_coded_prior_a                 0.0089      0.026      0.346      0.730      -0.042       0.059
-number_coded_prior_b                 0.0231      0.013      1.809      0.071      -0.002       0.048
-is_legacy_volume                     0.2789      0.216      1.290      0.198      -0.146       0.704
+=========================================================================================
+                            coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                 1.0470      0.068     15.389      0.000       0.913       1.181
+C(coder_a)[T.Brian]      -0.0502      0.067     -0.746      0.456      -0.182       0.082
+C(coder_a)[T.Bridget]     0.0193      0.033      0.584      0.560      -0.046       0.084
+C(coder_a)[T.Leah]       -0.0067      0.031     -0.212      0.833      -0.069       0.055
+C(coder_b)[T.Bridget]    -0.1652      0.057     -2.908      0.004      -0.277      -0.054
+C(coder_b)[T.Leah]       -0.1422      0.050     -2.872      0.004      -0.240      -0.045
+C(coder_b)[T.Rachel]     -0.1254      0.072     -1.733      0.084      -0.268       0.017
+C(question)[T.Q2]         0.0844      0.027      3.123      0.002       0.031       0.138
+C(question)[T.Q3]         0.0858      0.027      3.172      0.002       0.033       0.139
+C(question)[T.Q4]         0.0814      0.027      3.011      0.003       0.028       0.135
+C(question)[T.Q5]         0.0828      0.027      3.063      0.002       0.030       0.136
+C(question)[T.Q6]        -0.0185      0.027     -0.684      0.494      -0.072       0.035
+C(question)[T.Q7]        -0.0464      0.030     -1.534      0.126      -0.106       0.013
+number_coded_prior_a     -0.0165      0.010     -1.728      0.085      -0.035       0.002
+number_coded_prior_b      0.0115      0.009      1.255      0.210      -0.007       0.030
+is_legacy_volume          0.0472      0.031      1.498      0.135      -0.015       0.109
 ==============================================================================
-Omnibus:                      272.732   Durbin-Watson:                   1.515
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             2682.565
-Skew:                          -2.595   Prob(JB):                         0.00
-Kurtosis:                      14.003   Cond. No.                     1.88e+17
+Omnibus:                      365.881   Durbin-Watson:                   1.203
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             5658.564
+Skew:                          -3.719   Prob(JB):                         0.00
+Kurtosis:                      19.027   Cond. No.                         272.
 ==============================================================================
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The smallest eigenvalue is 2.72e-30. This might indicate that there are
-strong multicollinearity problems or that the design matrix is singular.

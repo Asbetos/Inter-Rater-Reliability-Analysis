@@ -1,4 +1,4 @@
-# IRR v2 — Initial Regression Insights
+# IRR v2 — Regression Insights (volume FE removed)
 
 **Dataset:** `outputs/irr_dataset_v2_per_pair.csv` — 435 rows, 21 volumes, 7 questions, 8 coder slots.
 
@@ -8,63 +8,51 @@
 
 | Variant | R² | Adj R² | F p-value | Key coefficient: number_coded_prior_a |
 |---|---|---|---|---|
-| OLS (linear NCP) | 0.3805 | 0.3279 | 3.408e-25 | coef = 0.00887, p = 0.7296 |
-| WLS (weighted by N) | 0.3323 | 0.2755 | 1.322e-19 | coef = 0.01087, p = 0.6178 |
-| OLS (log NCP) | 0.3784 | 0.3256 | 6.215e-25 | coef = 0.01079, p = 0.8002 |
+| OLS (linear NCP) | 0.1938 | 0.1650 | 4.892e-13 | coef = -0.01650, p = 0.08481 |
+| WLS (weighted by N) | 0.1739 | 0.1443 | 4.114e-11 | coef = -0.01485, p = 0.09286 |
+| OLS (log NCP) | 0.1975 | 0.1688 | 2.113e-13 | coef = -0.01283, p = 0.6226 |
 
 ## Per-question fits
 
 | Question | N | R² | F p-value | NCP_a coef | NCP_a p | NCP_b coef | NCP_b p |
 |---|---|---|---|---|---|---|---|
-| Q1 | 65 | 0.6527 | 0.006615 | 0.02549 | 0.7781 | 0.04877 | 0.2792 |
-| Q2 | 65 | 0.7849 | 1.049e-05 | 0.00208 | 0.7834 | 0.00271 | 0.4706 |
-| Q3 | 65 | 0.7971 | 4.434e-06 | 0.00359 | 0.632 | 0.00258 | 0.4866 |
-| Q4 | 65 | 0.7927 | 6.095e-06 | 0.00066 | 0.9329 | 0.00192 | 0.6191 |
-| Q5 | 65 | 0.7940 | 5.563e-06 | 0.00252 | 0.7345 | 0.00248 | 0.502 |
-| Q6 | 65 | 0.6625 | 0.004703 | 0.03047 | 0.7293 | 0.04779 | 0.2759 |
-| Q7 | 45 | 0.6226 | 0.03517 | -0.01298 | 0.8725 | 0.04435 | 0.6195 |
+| Q1 | 65 | 0.2203 | 0.1048 | -0.03718 | 0.3142 | 0.02700 | 0.4466 |
+| Q2 | 65 | 0.4845 | 1.361e-05 | -0.00253 | 0.4276 | -0.00023 | 0.9393 |
+| Q3 | 65 | 0.4881 | 1.148e-05 | -0.00245 | 0.4485 | -0.00045 | 0.8839 |
+| Q4 | 65 | 0.4620 | 3.777e-05 | -0.00243 | 0.4765 | -0.00018 | 0.9551 |
+| Q5 | 65 | 0.4836 | 1.422e-05 | -0.00221 | 0.4911 | -0.00040 | 0.8957 |
+| Q6 | 65 | 0.1977 | 0.1692 | -0.03317 | 0.3693 | 0.02235 | 0.5287 |
+| Q7 | 45 | 0.2669 | 0.1485 | -0.03193 | 0.7296 | 0.04438 | 0.6356 |
 
 ## Coder effects (from OLS-linear)
 
 **Coder A dummies** (each is delta vs the reference coder):
-- `C(coder_a)[T.Brian]` = +0.1167 (p = 0.468)
-- `C(coder_a)[T.Bridget]` = -0.0012 (p = 0.974)
-- `C(coder_a)[T.Leah]` = +0.0024 (p = 0.965)
+- `C(coder_a)[T.Brian]` = -0.0502 (p = 0.456)
+- `C(coder_a)[T.Bridget]` = +0.0193 (p = 0.56)
+- `C(coder_a)[T.Leah]` = -0.0067 (p = 0.833)
 
 **Coder B dummies**:
-- `C(coder_b)[T.Bridget]` = -0.2365 (p = 0.00151) *
-- `C(coder_b)[T.Leah]` = -0.1855 (p = 0.00334) *
-- `C(coder_b)[T.Rachel]` = -0.2115 (p = 0.0352) *
+- `C(coder_b)[T.Bridget]` = -0.1652 (p = 0.00383) *
+- `C(coder_b)[T.Leah]` = -0.1422 (p = 0.00429) *
+- `C(coder_b)[T.Rachel]` = -0.1254 (p = 0.0838)
 
-## Volume effects (top 5 most + least)
+## Volume effects
 
-**Lowest 5** (associated with LOWER pct_agreement, controlling for everything else):
-- Volume 119 → -0.2618 (p = 0.000477)
-- Volume 114 → -0.2423 (p = 1.03e-06)
-- Volume 95 → -0.1632 (p = 0.401)
-- Volume 94 → -0.1601 (p = 0.329)
-- Volume 91 → -0.1179 (p = 0.373)
-
-**Highest 5** (associated with HIGHER pct_agreement):
-- Volume 131 → +0.2480 (p = 0.161)
-- Volume 132 → +0.2684 (p = 0.196)
-- Volume 134 - Part I → +0.3015 (p = 0.28)
-- Volume 133 → +0.4154 (p = 0.244)
-- Volume 134 - Part 2 → +0.4448 (p = 0.234)
+**Volume fixed effects have been removed from this model** to recover the cross-volume variance in `number_coded_prior` that was previously absorbed. Volume-level variation now flows into the residual + the experience and legacy-volume coefficients. To control for volume difficulty in this spec, use `n_overlap_orders` as a regression weight (see WLS variant) or add `is_legacy_volume` as a partial proxy.
 
 ## Experience effect (key research question)
 
-`number_coded_prior_a` coefficient = **+0.00887** (p = 0.7296, **NOT significant** at α=0.05).
-This is a **positive** effect: every additional volume coder_a had completed prior is associated with a 0.00887 change in `pct_agreement`.
+`number_coded_prior_a` coefficient = **-0.01650** (p = 0.08481, **NOT significant** at α=0.05).
+This is a **negative** effect: every additional volume coder_a had completed prior is associated with a 0.01650 change in `pct_agreement`.
 
-`number_coded_prior_b` coefficient = **+0.02312** (p = 0.07119, **NOT significant** at α=0.05).
+`number_coded_prior_b` coefficient = **+0.01155** (p = 0.2102, **NOT significant** at α=0.05).
 Direction: **positive**.
 
-In the log-experience variant, `log_ncp_a` coefficient = +0.01079 (p = 0.8002). If this fits notably better than linear (Adj R² goes up), there's diminishing returns to experience.
+In the log-experience variant, `log_ncp_a` coefficient = -0.01283 (p = 0.6226). If this fits notably better than linear (Adj R² goes up), there's diminishing returns to experience.
 
 ## Legacy volumes (Vol ≤ 63)
 
-`is_legacy_volume` coefficient = +0.27889 (p = 0.198). This may be unstable because volume fixed effects already absorb most volume-level variation; the legacy flag adds little orthogonal information unless many legacy volumes existed (we have 3: Vol 61, 62, 63).
+`is_legacy_volume` coefficient = +0.04718 (p = 0.1349). This may be unstable because volume fixed effects already absorb most volume-level variation; the legacy flag adds little orthogonal information unless many legacy volumes existed (we have 3: Vol 61, 62, 63).
 
 ## Caveats
 

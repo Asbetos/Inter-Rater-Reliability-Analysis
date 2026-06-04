@@ -39,7 +39,7 @@ def load() -> pd.DataFrame:
 
 def fit_ols_linear(df: pd.DataFrame):
     formula = (
-        "pct_agreement ~ C(coder_a) + C(coder_b) + C(volume) + C(question) "
+        "pct_agreement ~ C(coder_a) + C(coder_b) + C(question) "
         "+ number_coded_prior_a + number_coded_prior_b + is_legacy_volume"
     )
     return smf.ols(formula, data=df).fit()
@@ -47,7 +47,7 @@ def fit_ols_linear(df: pd.DataFrame):
 
 def fit_wls(df: pd.DataFrame):
     formula = (
-        "pct_agreement ~ C(coder_a) + C(coder_b) + C(volume) + C(question) "
+        "pct_agreement ~ C(coder_a) + C(coder_b) + C(question) "
         "+ number_coded_prior_a + number_coded_prior_b + is_legacy_volume"
     )
     return smf.wls(formula, data=df, weights=df["n_overlap_orders"]).fit()
@@ -58,7 +58,7 @@ def fit_ols_log_experience(df: pd.DataFrame):
     df["log_ncp_a"] = np.log1p(df["number_coded_prior_a"])
     df["log_ncp_b"] = np.log1p(df["number_coded_prior_b"])
     formula = (
-        "pct_agreement ~ C(coder_a) + C(coder_b) + C(volume) + C(question) "
+        "pct_agreement ~ C(coder_a) + C(coder_b) + C(question) "
         "+ log_ncp_a + log_ncp_b + is_legacy_volume"
     )
     return smf.ols(formula, data=df).fit()
@@ -69,7 +69,7 @@ def fit_per_question_models(df: pd.DataFrame):
     Filter to questions with >= 20 rows to avoid degenerate fits."""
     results = {}
     formula = (
-        "pct_agreement ~ C(coder_a) + C(coder_b) + C(volume) "
+        "pct_agreement ~ C(coder_a) + C(coder_b) "
         "+ number_coded_prior_a + number_coded_prior_b + is_legacy_volume"
     )
     for q in sorted(df["question"].unique()):
@@ -174,7 +174,7 @@ def main():
 
 def _build_insights_md(df, m_ols, m_wls, m_log, per_q_df, per_q_models):
     lines = []
-    lines.append("# IRR v2 — Initial Regression Insights")
+    lines.append("# IRR v2 — Regression Insights (volume FE removed)")
     lines.append("")
     lines.append(f"**Dataset:** `outputs/irr_dataset_v2_per_pair.csv` — {len(df)} rows, {df.volume.nunique()} volumes, "
                  f"{df.question.nunique()} questions, {df['coder_a'].nunique() + df['coder_b'].nunique()} coder slots.")
@@ -220,21 +220,17 @@ def _build_insights_md(df, m_ols, m_wls, m_log, per_q_df, per_q_models):
         lines.append(f"- `{k}` = {v:+.4f} (p = {p:.3g}){sig}")
     lines.append("")
 
-    # Top 5 most/least disagreeable volumes (by volume fixed effect)
-    lines.append("## Volume effects (top 5 most + least)")
+    # Volume FE removed in this model variant — note the design decision
+    lines.append("## Volume effects")
     lines.append("")
-    vol_coefs = {k: v for k, v in m_ols.params.items() if k.startswith("C(volume)")}
-    vol_df = pd.DataFrame([
-        {"term": k.replace("C(volume)[T.", "").rstrip("]"), "coef": v, "p": m_ols.pvalues[k]}
-        for k, v in vol_coefs.items()
-    ]).sort_values("coef")
-    lines.append("**Lowest 5** (associated with LOWER pct_agreement, controlling for everything else):")
-    for _, r in vol_df.head(5).iterrows():
-        lines.append(f"- {r.term} → {r.coef:+.4f} (p = {r.p:.3g})")
-    lines.append("")
-    lines.append("**Highest 5** (associated with HIGHER pct_agreement):")
-    for _, r in vol_df.tail(5).iterrows():
-        lines.append(f"- {r.term} → {r.coef:+.4f} (p = {r.p:.3g})")
+    lines.append(
+        "**Volume fixed effects have been removed from this model** to recover the "
+        "cross-volume variance in `number_coded_prior` that was previously absorbed. "
+        "Volume-level variation now flows into the residual + the experience and "
+        "legacy-volume coefficients. To control for volume difficulty in this spec, "
+        "use `n_overlap_orders` as a regression weight (see WLS variant) or add "
+        "`is_legacy_volume` as a partial proxy."
+    )
     lines.append("")
 
     # Number_coded_prior interpretation
