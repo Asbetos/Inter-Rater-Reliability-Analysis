@@ -24,11 +24,17 @@ To run on a different snapshot, replace the `--input` path. For each volume, **u
 
 ## How to test
 
+The two suites use independent fixtures and **must be run separately** —
+running bare `pytest` from the repo root fails because both suites define a
+top-level `conftest`:
+
 ```bash
-/home/G39248410/citizen_voice/venv/bin/pytest -v
+VENV=/home/G39248410/citizen_voice/venv/bin
+$VENV/pytest tests/          # core IRR metrics   (40 tests)
+$VENV/pytest dataset/tests/  # dataset builder    (100 tests)
 ```
 
-To rebuild the test fixture:
+To rebuild the core test fixture:
 
 ```bash
 /home/G39248410/citizen_voice/venv/bin/python tests/build_fixture.py
@@ -107,12 +113,33 @@ irr_analysis/
 │   ├── test_normalize.py
 │   ├── test_metrics.py
 │   └── test_compute_irr.py
+├── dataset/             # multi-volume IRR dataset built from Google Drive +
+│   │                    #   per-question regression analysis (see dataset/README.md)
+│   ├── build_dataset.py, drive_source.py, auth.py, agreement_*.py, ...
+│   ├── regression/      # statsmodels OLS/WLS per-question models + advisor reports
+│   └── tests/           # 100 tests
 ├── outputs/             # generated reports (.gitignored except first pilot run)
 └── README.md
 ```
 
-## Environment
+> The `dataset/` subpackage extends the single-volume pilot above into a
+> multi-volume dataset + regression workflow; it has its own
+> [`dataset/README.md`](dataset/README.md).
 
-- Python 3.11 from `/home/G39248410/citizen_voice/venv/`
-- No `pip install` needed — all metrics implemented from scratch in numpy/stdlib because the venv lacks `pip`
-- pandas 3.x compatible (answer/notes columns explicitly object-dtype to preserve `None` vs `NaN`)
+## Setup
+
+Uses the shared project venv (uv-managed CPython 3.11.6):
+
+```bash
+source /home/G39248410/citizen_voice/venv/bin/activate
+pip install -r requirements.txt
+```
+
+The **core IRR metrics** (`irr_metrics.py`) are pure numpy/stdlib, but the
+wider package needs more: `pandas`/`openpyxl` for I/O, `statsmodels`/`patsy`/
+`scipy` for the per-question regression under `dataset/regression/`, and the
+Google API client libraries for building datasets from Drive
+(`dataset/drive_source.py`, `dataset/auth.py`). All are pinned in
+`requirements.txt`.
+
+- pandas 3.x compatible (answer/notes columns explicitly object-dtype to preserve `None` vs `NaN`).

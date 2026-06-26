@@ -1,0 +1,26 @@
+# irr_analysis dependencies
+# Pinned to the shared project venv (uv-managed CPython 3.11.6).
+# Install:  pip install -r requirements.txt
+#
+# The core IRR metrics (irr_metrics.py) are pure numpy/stdlib; the rest of the
+# package needs the libraries below.
+
+# --- Core IRR + I/O ---
+numpy==2.4.4
+pandas==3.0.3
+openpyxl==3.1.5     # read cross_q_check workbooks, write Excel reports
+PyYAML==6.0.3       # dataset/ agreement-sheet overrides
+
+# --- Regression analysis (dataset/regression/) ---
+statsmodels==0.14.6
+patsy==1.0.2
+scipy==1.17.1
+
+# --- Build dataset from Google Drive (dataset/drive_source.py, auth.py) ---
+google-api-python-client==2.196.0
+google-auth==2.53.0
+google-auth-oauthlib==1.4.0
+google-auth-httplib2==0.4.0
+
+# --- Tests ---
+pytest==9.0.3
